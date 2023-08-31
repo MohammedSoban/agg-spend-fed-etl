@@ -7,12 +7,12 @@
   DTS:CreatorName="QORDATA\syed.najib"
   DTS:DTSID="{A7A10692-1CEE-4CB2-A32D-B7016E5BDB9B}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="1033"
   DTS:ObjectName="File Loader excel"
   DTS:PackageType="5"
-  DTS:VersionBuild="411"
-  DTS:VersionGUID="{58219D9B-9E55-49EE-B86D-22D869D58DDD}">
+  DTS:VersionBuild="412"
+  DTS:VersionGUID="{219E5B09-C1F5-453A-9F19-E845A391702D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,7 +35,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAmyyf28HkGU2e3bmpCxG/+wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADiBFw0vN5GT1VX86YEOupMtZ4/mGQWs81DpdKsxdSpCgAAAAAOgAAAAAIAACAAAABngh4E8OEmn+7bCd8WCgvRy/039+yZ0Q5DzdEu+MBubxAAAACummPo/V3c6DkgMckA+42bQAAAAHgFtv5OFdMxsEoi7MKkzL1iKFY7D6rEf8l+S3TXA614eaIXtoJfpmOIuVCZHEdWLmQCDeD5vzUHA/ZVvDqLi5w</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASnqcJFjPpUW9UfdgmX3mGgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAgX7rFBT7gOvB4/9B8BNmzAAAAAASAAACgAAAAEAAAAK22yTDZJfGQM3pQvFBpYmYQAAAAne6nmozoB4wozv8hVskJ4xQAAAAZlSqu1XwBvqZmthudlyQap15QfA</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -184,7 +184,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Declare @Year as varchar(max) = (select parameter_value from Parameters where Parameter_Name = 'p_CurrentYear')
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Declare @Year as varchar(max) = (select parameter_value from Parameters where Parameter_Name = 'p_CurrentYear')
 
 
 select concat('*',prefix,'*') as filemask , prefix, ID as File_ID, Isappend, ISNULL(b.TABLE_NAME,'Y') as Table_Already_Exist
@@ -754,7 +754,7 @@ namespace ST_c20de9a050d848109c74ad14700a4ca5
 
             // NEW VARIABLES ADDED TO ENTERTAIN JIRA STORY AG-2690 //
 
-
+            int aa;
 
             string FullTableName = "LZ" + "_" + CurrentYear + "_" + Prefix;
             string ExcelHeaderColumn = "";
@@ -1421,21 +1421,21 @@ namespace ST_c20de9a050d848109c74ad14700a4ca5
                 Name="Project"
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:CodeName>ST_1a242c287a194e36bac5eb679362ac44</msb:CodeName>
-		<msb:Language>msBuild</msb:Language>
-		<msb:DisplayName>ST_1a242c287a194e36bac5eb679362ac44</msb:DisplayName>
-		<msb:ProjectId>{4C6EEA68-6FF0-49CE-B2BC-0E5E4BE3AA7C}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_1a242c287a194e36bac5eb679362ac44.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-	</msb:ItemGroup>
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_1a242c287a194e36bac5eb679362ac44</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_1a242c287a194e36bac5eb679362ac44</msb:DisplayName>
+    <msb:ProjectId>{9C9200D0-1122-463D-A863-DD4FE6808A2A}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_1a242c287a194e36bac5eb679362ac44.csproj" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
@@ -1547,7 +1547,7 @@ namespace ST_049a15ba84244772b5e30d6d2eb53f13.Properties {
               <BinaryItem
                 Name="ST_1a242c287a194e36bac5eb679362ac44.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAH/27mQAAAAAAAAAAOAAIiALATAAAEYAAAAIAAAAAAAA+mUA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAGc88GQAAAAAAAAAAOAAIiALATAAAEYAAAAIAAAAAAAA+mUA
 AAAgAAAAgAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAADAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKhlAABPAAAAAIAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAKAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1682,7 +1682,7 @@ ASwEZwG5AbIAbAG5AUEFdgHZATcGfQHZASIEfgBxAAcHBgDRAAcHBgDpAVUBhAHpAfsIjQHZAAcH
 kwH5AAcHBgAIABQArQEIABgAsgEpAHMAGgIuAAsA8gEuABMA+wEuABsAGgIuACMAIwIuACsATAIu
 ADMATAIuADsATAIuAEMAIwIuAEsAUgIuAFMATAIuAFsAaQJDAGMAsgFJAHMAGgJhAHsAsgFjAGsA
 sgEbAFsBAwABAAQAAwAAAJMG4wEAAA8C6AEAAIcI7QECAAUAAwACAAYABQABAAcABQACAAgABwAE
-gAAAAQAAAMIh/zcAAAAAAAAJAAAABAAAAAAAAAAAAAAAmwGpAAAAAAAOAAAAAAAAAAAAAACkAZkE
+gAAAAQAAAMMhW1UAAAAAAAAJAAAABAAAAAAAAAAAAAAAmwGpAAAAAAAOAAAAAAAAAAAAAACkAZkE
 AAAAAAQAAAAAAAAAAAAAAJsBiwAAAAAABAAAAAAAAAAAAAAAmwFKBQAAAAAOAAAAAAAAAAAAAACk
 AWQAAAAAAAAAAAABAAAAWAcAAAUAAgAAAABUb0ludDMyAFNUXzFhMjQyYzI4N2ExOTRlMzZiYWM1
 ZWI2NzkzNjJhYzQ0AFNUX2MyMGRlOWEwNTBkODQ4MTA5Yzc0YWQxNDcwMGE0Y2E1ADxNb2R1bGU+
@@ -1851,7 +1851,7 @@ ACAAARtAAGUAcgByAG8AcgBNAGUAcwBzAGEAZwBlAABHVQBTAFAAXwBDAGgAZQBjAGsARgBpAGwA
 ZQBTAHQAYQB0AHUAcwBCAGUAZgBvAHIAZQBQAHIAbwBjAGUAcwBzAGkAbgBnAAATQABmAGkAbABl
 AE4AYQBtAGUAAHFTAFQAXwAwADQAOQBhADEANQBiAGEAOAA0ADIANAA0ADcANwAyAGIANQBlADMA
 MABkADYAZAAyAGUAYgA1ADMAZgAxADMALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1
-AHIAYwBlAHMAAIwOI9HnTi9IqEPVGJ0DP/8ABCABAQgDIAABBSABARERBCABAQ4FIAEBEXVFBzQO
+AHIAYwBlAHMAAL089yjy/BFLrrc8ibJC/5gABCABAQgDIAABBSABARERBCABAQ4FIAEBEXVFBzQO
 Dg4ODg4ODg4ODg4OCBI9EUEdDggODg4SRRJJDggSTRJRElUOElESSQ4ODhJZCA4IDhJZCA4ODhJZ
 CBJdDg4OEkUOBAAAEUEEIAEODgUgABKAhQUgABKAiQYgARKAjRwDIAAcAyAADgcABA4ODg4OBgAC
 HQ4ODgUgABKAmQYgARKAnRwEIAEcHAUgAg4ODgQgAQIOBQABDh0OBAYRgKkJIAISSRGAqR0cBSAA
@@ -1870,14 +1870,14 @@ dXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAADQZQAAAAAAAAAA
 AADqZQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3GUAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBt
 c2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAA
 AAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWIAAABoEAAAAAAAAAAAAABoENAAA
-AFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+AAABAAAAAQD/N8IhAAABAP83
-wiE/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBv
+AFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+AAABAAAAAQBbVcMhAAABAFtV
+wyE/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBv
 AAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4A
 ZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAwADAANABiADAAAAAaAAEAAQBDAG8AbQBt
 AGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEA
 RgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAVABfADAANAA5AGEAMQA1AGIAYQA4
 ADQAMgA0ADQANwA3ADIAYgA1AGUAMwAwAGQANgBkADIAZQBiADUAMwBmADEAMwAAAD4ADwABAEYA
-aQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA4ADYANAAyAC4AMQA0ADMAMwA1AAAAAABw
+aQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA4ADYANAAzAC4AMgAxADgANQAxAAAAAABw
 ACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADEAYQAyADQAMgBjADIAOAA3AGEA
 MQA5ADQAZQAzADYAYgBhAGMANQBlAGIANgA3ADkAMwA2ADIAYQBjADQANAAuAGQAbABsAAAASAAS
 AAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAA
@@ -1886,9 +1886,9 @@ ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBUAF8AMQBhADIANAAyAGMA
 MgA4ADcAYQAxADkANABlADMANgBiAGEAYwA1AGUAYgA2ADcAOQAzADYAMgBhAGMANAA0AC4AZABs
 AGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAVABfADAANAA5AGEAMQA1AGIA
 YQA4ADQAMgA0ADQANwA3ADIAYgA1AGUAMwAwAGQANgBkADIAZQBiADUAMwBmADEAMwAAAEIADwAB
-AFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOAA2ADQAMgAuADEANAAzADMA
-NQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOAA2
-ADQAMgAuADEANAAzADMANQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOAA2ADQAMwAuADIAMQA4ADUA
+MQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOAA2
+ADQAMwAuADIAMQA4ADUAMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1980,6 +1980,34 @@ AAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Variables setting 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{558d515f-26f9-4aa3-a8f6-5d8a531db1e9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Variables setting 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+          SQLTask:SqlStatementSource="Select p_SourceFolder as SourceFolder,&#xA;  p_ArchiveFolder as ArchiveFolder,&#xA;  p_CurrentYear as [Year]&#xA;from&#xA;(&#xA;select Parameter_Name,Parameter_Value &#xA;from Parameters&#xA;)A&#xA;PIVOT(&#xA;    MAX(Parameter_Value) &#xA;    FOR Parameter_Name IN (&#xA;        p_SourceFolder,&#xA;  p_ArchiveFolder,&#xA;  p_CurrentYear)&#xA;) AS pivot_table;&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::P_SourceFolder" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::P_ArchiveFolder" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::CurrentYear" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -2010,7 +2038,7 @@ AAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150.4,41.6"
           Id="Package\Data Flow Task"
@@ -2100,6 +2128,10 @@ AAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Variables setting 1"
+          TopLeft="241.333333333333,549.6" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
