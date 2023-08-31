@@ -1,0 +1,2143 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/20/2019 1:19:26 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="US-BCKND"
+  DTS:CreatorName="QORDATA\syed.najib"
+  DTS:DTSID="{29A86262-FD9A-4FDA-824E-6E43C63C5534}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="File Loader excel_OLD"
+  DTS:PackageType="5"
+  DTS:VersionBuild="401"
+  DTS:VersionGUID="{28837D33-EE43-495B-A874-07223F037EF4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DBConn]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{2236F1A2-36E3-4D84-8D95-4E0060678947}"
+      DTS:ObjectName="DBConn">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Password">@[$Project::Password]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="UserName">@[$Project::UserName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;User ID=fedusr;Initial Catalog=Fed_Rep_Sol;Integrated Security=True;Application Name=SSIS-File Loader-{2236F1A2-36E3-4D84-8D95-4E0060678947}LocalHost.Fed_Rep_Sol;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAUjQYXnPai0+jGEmQpkUdHwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACbAWA1LXtfsZQjUP7EhuP6AAAAAASAAACgAAAAEAAAAApBahc9Lse96dmE522k7BsQAAAAhy37wQWli5FPGAcaBv7TPRQAAAC8SvQfnSGdNoch8juqC6pwu+2aTw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C4CCE9F-7ED8-436F-87BB-6F8C840D2BE2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentYear">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6409988C-CA21-4819-9571-A9E302C1CA2B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Filemask">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{10CF38C9-5731-4D67-88C2-9047A81E93D6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Filename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3B677BB4-3914-40FD-BC2D-78E7EDFB2B3A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="File_Id">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{48FFEBF4-FCD6-45F2-B3D9-33FCE4B044A1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FolderPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\syed.najib\Desktop\asads</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5699B5D2-AFB5-4914-B692-E2E5A02F7348}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsAppend">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8844ECBD-C24C-452E-9046-F40AD9A80851}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Prefix">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{641F4140-C831-49D5-9196-4A7798F4A093}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="P_ArchiveFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\FederalReprting\Agg_Spend_Solution\Fed_Rep_Sol\Merz\Archive</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F454E285-1045-4F7A-8F5F-3EA991521F37}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="P_SourceFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\FederalReprting\Agg_Spend_Solution\Fed_Rep_Sol\Merz</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7D142691-D116-477F-BF0B-1E601EC34D42}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Table_Already_Existence">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{34747D1F-661E-43C5-ADC0-993B87D88B9F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Declare @Year as varchar(max) = (select parameter_value from Parameters where Parameter_Name = 'p_CurrentYear')
+
+
+select concat('*',prefix,'*') as filemask , prefix, ID as File_ID, Isappend, ISNULL(b.TABLE_NAME,'Y') as Table_Already_Exist
+from file_specs A
+left join INFORMATION_SCHEMA.TABLES B
+on 'LZ_'+@Year+'_'+PREFIX = b.TABLE_NAME
+where Isenable = 1
+order by len(Prefix) desc</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{567F690F-1DCF-4B79-8574-18F7C55EBE58}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost Fed_Rep_Solution]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[filemask]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filemask]"
+                      length="102"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[filemask]"
+                      name="filemask"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[prefix]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[prefix]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[prefix]"
+                      name="prefix"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[File_ID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_ID]"
+                      name="File_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Isappend]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Isappend]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Isappend]"
+                      name="Isappend"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Table_Already_Exist]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Table_Already_Exist]"
+                      length="128"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Table_Already_Exist]"
+                      name="Table_Already_Exist"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filemask]"
+                      codePage="1252"
+                      dataType="str"
+                      length="102"
+                      name="filemask" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[prefix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="prefix" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[File_ID]"
+                      dataType="i4"
+                      name="File_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Isappend]"
+                      dataType="i4"
+                      name="Isappend" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Table_Already_Exist]"
+                      dataType="wstr"
+                      length="128"
+                      name="Table_Already_Exist" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filemask]"
+                      codePage="1252"
+                      dataType="str"
+                      length="102"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filemask]"
+                      name="filemask" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[prefix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[prefix]"
+                      name="prefix" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[File_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[File_ID]"
+                      name="File_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Isappend]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Isappend]"
+                      name="Isappend" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Table_Already_Exist]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Table_Already_Exist]"
+                      name="Table_Already_Exist" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Recordset Destination"
+              componentClassID="Microsoft.RecordsetDestination"
+              contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+              name="Recordset Destination">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::Filemask</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Recordset Destination.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Recordset Destination.Inputs[Recordset Destination Input].Columns[filemask]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="102"
+                      cachedName="filemask"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[filemask]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Recordset Destination.Inputs[Recordset Destination Input].Columns[prefix]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="prefix"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[prefix]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Recordset Destination.Inputs[Recordset Destination Input].Columns[File_ID]"
+                      cachedDataType="i4"
+                      cachedName="File_ID"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[File_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Recordset Destination.Inputs[Recordset Destination Input].Columns[Isappend]"
+                      cachedDataType="i4"
+                      cachedName="Isappend"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Isappend]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Recordset Destination.Inputs[Recordset Destination Input].Columns[Table_Already_Exist]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="Table_Already_Exist"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Table_Already_Exist]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Recordset Destination.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{57E3116B-8F80-4CD1-A860-787B9022E2F3}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{8827A039-BBB3-4600-B363-9EF14B0ED44C}"
+        DTS:ObjectName="{8827A039-BBB3-4600-B363-9EF14B0ED44C}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::Filemask" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\View Creation"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1a72f902-5b2a-42ce-b9d8-d18a04da9746}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="View Creation"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;EXECUTE [dbo].[Sp_view] ?&#xA;END TRY&#xA;&#xA;BEGIN CATCH&#xA;&#xA;&#xA;insert into prefixdebug values (?)&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::Prefix"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::Prefix"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\xlsx files"
+          DTS:CreationName="Microsoft.ScriptTask"
+          DTS:Description="Script Task"
+          DTS:DTSID="{642E2CD6-89CD-4AEA-BBB8-2862A51D6353}"
+          DTS:ExecutableType="Microsoft.ScriptTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="xlsx files"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_1a242c287a194e36bac5eb679362ac44"
+              VSTAMajorVersion="15"
+              VSTAMinorVersion="0"
+              Language="CSharp"
+              ReadOnlyVariables="User::CurrentYear,User::File_Id,User::Filename,User::IsAppend,User::P_ArchiveFolder,User::P_SourceFolder,User::Prefix,User::Table_Already_Existence">
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.resx"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+              <ProjectItem
+                Name="ScriptMain.cs"
+                Encoding="UTF8"><![CDATA[
+
+
+#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+using System.IO;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_c20de9a050d848109c74ad14700a4ca5
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+    [Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+    public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+    {
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+        /// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+        public void Main()
+        {
+            // TODO: Add your code here
+            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string SourceFolderPath = Dts.Variables["User::P_SourceFolder"].Value.ToString();
+            string ArchiveFolder = Dts.Variables["User::P_ArchiveFolder"].Value.ToString();
+            string File_Id = Dts.Variables["User::File_Id"].Value.ToString();
+            string Filename = Dts.Variables["User::Filename"].Value.ToString();
+            string Prefix = Dts.Variables["User::Prefix"].Value.ToString();
+            string CurrentYear = Dts.Variables["User::CurrentYear"].Value.ToString();
+            string IsAppend = Dts.Variables["User::IsAppend"].Value.ToString();
+            string Table_Already_Existence = Dts.Variables["User::Table_Already_Existence"].Value.ToString();
+            string TableName = Prefix;
+
+            // NEW VARIABLES ADDED TO ENTERTAIN JIRA STORY AG-2690 //
+
+
+
+            string FullTableName = "LZ" + "_" + CurrentYear + "_" + Prefix;
+            string ExcelHeaderColumn = "";
+            string SQLQueryToGetMatchingColumn = "";
+            int ValidationFlag = 0;
+            //MessageBox.Show(FullTableName);
+            // var directory = new DirectoryInfo(SourceFolderPath);
+            string[] files = Directory.GetFiles(SourceFolderPath, Filename);
+
+                        
+
+
+            SqlConnection myADONETConnection = new SqlConnection();
+            myADONETConnection = (SqlConnection)(Dts.Connections["DBConn"].AcquireConnection(Dts.Transaction) as SqlConnection);
+
+
+
+            //Get one Book(Excel file at a time)
+            foreach (string filename in files)
+            {
+                try
+                {
+
+                    ////MessageBox.Show("File full path is " + filename);
+                    string Filename_archive = filename.Replace(".xlsx", "").Replace(".xls", "");
+                    if ((filename.Contains(".xlsx")) || (filename.Contains(".xls")) || (filename.Contains(".XLSX")) || (filename.Contains(".XLS")))
+                    {
+
+                        //Create Excel Connection
+                        string ConStr;
+                        string HDR;
+                        HDR = "YES";
+                        ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filename + ";Extended Properties=\"Excel 12.0;HDR=" + HDR + ";IMEX=1\"";
+
+                        OleDbConnection cnn = new OleDbConnection(ConStr);
+
+                        //Get Sheet Name
+                        cnn.Open();
+                        DataTable dtSheet = cnn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                        string sheetname;
+                        sheetname = "";
+
+                        //if (dtSheet.Rows.Count != Convert.ToInt32(1))
+
+                        int sheetCount = 0;
+
+
+                        foreach (DataRow dr in dtSheet.Rows)
+                        {
+                            if ((dr["TABLE_NAME"].ToString().Contains("$")) & (!dr["TABLE_NAME"].ToString().Contains("FilterDatabase")))
+                            {
+                                sheetCount = sheetCount + 1;
+                            }
+                        }
+
+                        if (sheetCount != Convert.ToInt32(1))
+                        {
+                            string new_name_of_file = CurrentYear + '_' + filename.Replace(SourceFolderPath, "").Replace("\\", "");
+
+                            if (CheckFileStatusBeforeProcessing(new_name_of_file) == 1)
+                            {
+
+                                string NoRows = "UPDATE Audit_Logs set Status=0 ,Processed_TimeStamp='"+ datetime + "',[Error Description]='File has " + sheetCount.ToString() + " sheets', Start_time=GETDATE() where FileName ='" + new_name_of_file + "' and Status=5";
+                               // MessageBox.Show(NoRows);
+                                SqlCommand NoRowsStatement = new SqlCommand(NoRows, myADONETConnection);
+                                NoRowsStatement.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                        
+                            string NoRows = "INSERT INTO [Audit_Logs] ([FILE_ID],[FileName],[Error Description],Start_time,[Status],Processed_TimeStamp,Insert_Date,Updated_Date) VALUES (" + File_Id + ",'" + new_name_of_file + "'," + "'File has " + sheetCount.ToString() + " sheets', GETDATE()" + ",0"+ ",'"+ datetime+"'"+ ",GETDATE(),GETDATE())";
+                            ////MessageBox.Show(NoRows);
+                            SqlCommand NoRowsStatement = new SqlCommand(NoRows, myADONETConnection);
+                            NoRowsStatement.ExecuteNonQuery();
+
+
+                            string Update_WAL = "update A set status = 3 from WebAttachmentLogs A inner join (select FileName, max(id) as id from WebAttachmentLogs group by FileName)B on a.FileName = b.FileName and a.Id = b.id where a.FileName = '" + new_name_of_file + "'"; //filename.Replace(SourceFolderPath, "").Replace("\\", "") + "'";
+                            SqlCommand Update_WALStatement = new SqlCommand(Update_WAL, myADONETConnection);
+                            Update_WALStatement.ExecuteNonQuery();
+                            }
+                            cnn.Close();
+
+                       
+
+                                File.Move(filename, ArchiveFolder.Replace("Archive", "Failed_Files") + "\\" + CurrentYear+"_"+(Filename_archive.Replace(SourceFolderPath, "")).Replace("\\", "") + "_" + datetime + ".xlsx");
+                                
+                          
+
+                        }
+
+                        if (sheetCount == Convert.ToInt32(1))
+                        {
+                            foreach (DataRow drSheet in dtSheet.Rows)
+                            {
+                                if ((drSheet["TABLE_NAME"].ToString().Contains("$")) & (!drSheet["TABLE_NAME"].ToString().Contains("FilterDatabase")))
+                                {
+                                    sheetname = drSheet["TABLE_NAME"].ToString();
+
+
+                                    //Display Sheet Name , you can comment it out
+                                    ////MessageBox.Show(sheetname);
+
+                                    //Load the DataTable with Sheet Data
+                                    OleDbCommand oconn = new OleDbCommand("select *, '" + filename.Replace(SourceFolderPath, "").Replace("\\", "") + "' as Filename from [" + sheetname + "]", cnn);
+                                    //cnn.Open();
+                                    OleDbDataAdapter adp = new OleDbDataAdapter(oconn);
+                                    DataTable dt = new DataTable();
+                                    adp.Fill(dt);
+                                    
+                                        //   SqlConnection myADONETConnection = new SqlConnection();
+                                        //   myADONETConnection = (SqlConnection)(Dts.Connections["DBConn"].AcquireConnection(Dts.Transaction) as SqlConnection);
+                                    if (dt.Rows.Count == Convert.ToInt32(0))
+                                    {
+                                        string new_name_of_file = CurrentYear + '_' + filename.Replace(SourceFolderPath, "").Replace("\\", "");
+
+                                        if (CheckFileStatusBeforeProcessing(new_name_of_file) == 1)
+                                        {
+
+
+                                            string NoRows = "UPDATE Audit_Logs set Status=0, Processed_TimeStamp='" + datetime + "' ,[Error Description]='File has 0 rows.', Start_time = GETDATE() where FileName ='" + new_name_of_file + "' and Status=5";
+                                            //MessageBox.Show(NoRows);
+                                            SqlCommand NoRowsStatement = new SqlCommand(NoRows, myADONETConnection);
+                                            NoRowsStatement.ExecuteNonQuery();
+
+
+                                        }
+                                        else
+                                        { 
+                                        string NoRows = "INSERT INTO [Audit_Logs] ([FILE_ID],[FileName],[Error Description],Start_time,[Status],Processed_TimeStamp,Insert_Date,Updated_Date) VALUES (" + File_Id + ",'" + new_name_of_file + "'," + "'File has 0 rows.', GETDATE()" + ",0"+",'"+ datetime +"'"+ ",GETDATE(),GETDATE())";
+                                        ////MessageBox.Show(NoRows);
+                                        SqlCommand NoRowsStatement = new SqlCommand(NoRows, myADONETConnection);
+                                        NoRowsStatement.ExecuteNonQuery();
+
+                                        string Update_WAL = "update A set status = 3 from WebAttachmentLogs A inner join (select FileName, max(id) as id from WebAttachmentLogs group by FileName)B on a.FileName = b.FileName and a.Id = b.id where a.FileName = '" + new_name_of_file + "'"; //filename.Replace(SourceFolderPath, "").Replace("\\", "") + "'";
+                                        SqlCommand Update_WALStatement = new SqlCommand(Update_WAL, myADONETConnection);
+                                        Update_WALStatement.ExecuteNonQuery();
+                                        }
+
+                                        cnn.Close();
+                                        File.Move(filename, ArchiveFolder.Replace("Archive", "Failed_Files") + "\\" + CurrentYear+"_"+(Filename_archive.Replace(SourceFolderPath, "")).Replace("\\", "") + "_" + datetime + ".xlsx");
+
+                                    }
+
+                                    if (dt.Rows.Count != Convert.ToInt32(0))
+                                    {
+                                        string new_name_of_file = CurrentYear + '_' + filename.Replace(SourceFolderPath, "").Replace("\\", "");
+
+                                        if (CheckFileStatusBeforeProcessing(new_name_of_file) == 1)
+                                        {
+
+
+                                            string logging = "UPDATE Audit_Logs set Status = 0, Processed_TimeStamp='" + datetime + "', Start_time = GETDATE() where FileName = '" + new_name_of_file + "' and Status=5";
+                                            //MessageBox.Show(NoRows);
+                                            SqlCommand loggingStatement = new SqlCommand(logging, myADONETConnection);
+                                            loggingStatement.ExecuteNonQuery();
+
+
+                                        }
+                                        else { 
+
+                                       
+                                        string logging = "INSERT INTO [Audit_Logs] ([FILE_ID],[FileName],[Error Description],Start_time,[Status],Insert_Date,Updated_Date) VALUES (" + File_Id + ",'" + new_name_of_file + "'," + "'', GETDATE()" + ",0,GETDATE(),GETDATE())";
+                                        ////MessageBox.Show(logging);
+                                        SqlCommand loggingStatement = new SqlCommand(logging, myADONETConnection);
+                                        loggingStatement.ExecuteNonQuery();
+
+                                        string Update_WAL = "update A set status = 3 from WebAttachmentLogs A inner join (select FileName, max(id) as id from WebAttachmentLogs group by FileName)B on a.FileName = b.FileName and a.Id = b.id where a.FileName = '" + new_name_of_file + "'"; // filename.Replace(SourceFolderPath, "").Replace("\\", "") + "'";
+                                        SqlCommand Update_WALStatement = new SqlCommand(Update_WAL, myADONETConnection);
+                                        Update_WALStatement.ExecuteNonQuery();
+                                        }
+                                        if (Convert.ToInt32(IsAppend) == Convert.ToInt32(0) && Table_Already_Existence != Convert.ToString('Y'))
+                                        {
+
+
+                                            // AG-2690 STARTS HERE
+
+                                            /* 
+                                            LOGIC TO FIGURE OUT WHETHER TO LOAD FILE OR REJECT IT BASED ON SCHEMA STARTS HERE
+
+
+                                            */
+
+                                            for (int i = 0; i < dt.Columns.Count; i++)
+                                            {
+                                                if (i != dt.Columns.Count - 1)
+                                                    ExcelHeaderColumn += "'" + dt.Columns[i].ColumnName + "'" + ",";
+                                                else
+                                                    ExcelHeaderColumn += "'" + dt.Columns[i].ColumnName + "'";
+                                            }
+
+                                            SQLQueryToGetMatchingColumn = "select STUFF((Select  ','''+Column_Name+''''  from Information_schema.Columns where Table_Name= '" + FullTableName + "' and COLUMN_NAME NOT IN ('PK_ID','isDeleted','Delete_Date') order by ORDINAL_POSITION for xml path('')),1,1,'') AS ColumnList";
+                                            myADONETConnection = (SqlConnection)(Dts.Connections["DBConn"].AcquireConnection(Dts.Transaction) as SqlConnection);
+                                            //MessageBox.Show(SQLQueryToGetMatchingColumn.ToString());
+                                           // break;
+                                            //Get Matching Column List from SQL Server
+                                            string SQLColumnList = "";
+                                            SqlCommand cmd = myADONETConnection.CreateCommand();
+                                            cmd.CommandText = SQLQueryToGetMatchingColumn;
+                                            SQLColumnList = (string)cmd.ExecuteScalar();
+
+                                            //MessageBox.Show("YTD EXCEL Matching Columns: " + ExcelHeaderColumn);
+                                            //MessageBox.Show("YTD LZ TABLE Matching Columns: " + SQLColumnList);
+
+                                            if (String.Equals(SQLColumnList, ExcelHeaderColumn))
+                                            {
+                                                ValidationFlag = 1;
+                                            }
+                                            else
+                                            {
+                                                ValidationFlag = 0;
+                                            }
+
+                                           
+                                            if (ValidationFlag == 0)
+                                            {
+                                                string updateQuery_DML = "update Audit_Logs set status = @status, [Error Description] = @errorDescription, End_time = GETDATE(), Processed_TimeStamp = '" + datetime + "' WHERE [ID] = (SELECT MAX([ID]) FROM Audit_Logs WHERE End_time IS NULL)";
+
+                                                string errorDescription = "Please upload the file with same format as of previous files";
+                                                SqlCommand updateQuery_DML_CMD = new SqlCommand(updateQuery_DML, myADONETConnection);
+                                                updateQuery_DML_CMD.Parameters.AddWithValue("@status", "-1".ToString());
+                                                updateQuery_DML_CMD.Parameters.AddWithValue("@errorDescription", errorDescription);
+
+                                                //MessageBox.Show(updateQuery_DML);
+
+                                                updateQuery_DML_CMD.ExecuteNonQuery();
+
+                                                // MOVING THE FILE TO 'FAILED_FILES' FOLDER'
+                                                cnn.Close();
+                                                File.Move(filename, ArchiveFolder.Replace("Archive", "Failed_Files") + "\\" +CurrentYear+"_"+ (Filename_archive.Replace(SourceFolderPath, "")).Replace("\\", "") + "_" + datetime + ".xlsx");
+
+                                                // SKIP THIS ITERATION OF FILE
+                                                continue;
+                                            }
+
+                                           
+                                            // YTD FILE LOAD
+                                            string DroptableDDL = "IF EXISTS (SELECT * FROM sys.objects WHERE name = 'LZ_" + CurrentYear + "_" + TableName + "' AND type = 'U') DROP TABLE [LZ_" + CurrentYear + "_" + TableName + "];";
+                                            ////MessageBox.Show("Not is Append, ",DroptableDDL);
+                                            SqlCommand DropStatement = new SqlCommand(DroptableDDL, myADONETConnection);
+                                            DropStatement.ExecuteNonQuery();
+
+                                            string tableDDL = "Create table [LZ_" + CurrentYear + "_" + TableName + "]";
+                                            tableDDL += "(";
+                                            for (int i = 0; i < dt.Columns.Count; i++)
+                                            {
+                                                if (i != dt.Columns.Count - 1)
+                                                    tableDDL += "[" + dt.Columns[i].ColumnName + "] " + "NVarchar(max)" + ",";
+                                                else
+                                                    tableDDL += "[" + dt.Columns[i].ColumnName + "] " + "NVarchar(max)";
+                                            }
+                                            tableDDL += ")";
+
+
+                                            //use ADO.NET connection to Create Table from above Definition
+
+                                            //you can comment the ////MessageBox, it is for debugging
+                                            ////MessageBox.Show(tableDDL.ToString());
+                                            SqlCommand myCommand = new SqlCommand(tableDDL, myADONETConnection);
+                                            myCommand.ExecuteNonQuery();
+
+                                            string logging_1 = "UPDATE [Audit_Logs] SET [Status] = 1, End_time = GETDATE(), Processed_TimeStamp = '" + datetime + "' WHERE ID = (SELECT MAX(ID) FROM Audit_Logs WHERE [FILE_ID] = " + File_Id + ") ";
+                                            ////MessageBox.Show(logging_1);
+                                            SqlCommand logging_1Statement = new SqlCommand(logging_1, myADONETConnection);
+                                            logging_1Statement.ExecuteNonQuery();
+                                            // Comment this message, it is for debugging
+                                            ////MessageBox.Show("TABLE IS CREATED");
+
+
+                                            //  Load the data from DataTable to SQL Server Table.
+                                            SqlBulkCopy blk = new SqlBulkCopy(myADONETConnection);
+                                            blk.DestinationTableName = "[LZ_" + CurrentYear + "_" + TableName + "]";
+                                            blk.WriteToServer(dt);
+
+                                            string logging_2 = "UPDATE [Audit_Logs] SET [Status] = 2, End_time = GETDATE(), Processed_TimeStamp = '" + datetime + "' WHERE ID = (SELECT MAX(ID) FROM Audit_Logs WHERE [FILE_ID] = " + File_Id + ") ";
+                                            ////MessageBox.Show(logging_2);
+                                            SqlCommand logging_2Statement = new SqlCommand(logging_2, myADONETConnection);
+                                            logging_2Statement.ExecuteNonQuery();
+
+
+                                            string Altertable = "ALTER TABLE [LZ_" + CurrentYear + "_" + TableName + "] add PK_ID INT IDENTITY(1,1)";
+                                            ////MessageBox.Show(Altertable);
+                                            SqlCommand AltertableStatement = new SqlCommand(Altertable, myADONETConnection);
+                                            AltertableStatement.ExecuteNonQuery();
+
+                                            string isDeleteColumn = "ALTER TABLE [LZ_" + CurrentYear + "_" + TableName + "] add isDeleted INT NOT NULL default  0";
+                                            ////MessageBox.Show(Altertable);
+                                            SqlCommand isDeleteColumnStatement = new SqlCommand(isDeleteColumn, myADONETConnection);
+                                            isDeleteColumnStatement.ExecuteNonQuery();
+
+                                            string deleteDateColumn = "ALTER TABLE [LZ_" + CurrentYear + "_" + TableName + "] add Delete_Date datetime not null default '1800-07-16 00:00:00.000'";
+                                            ////MessageBox.Show(Altertable);
+                                            SqlCommand deleteDateColumnStatement = new SqlCommand(deleteDateColumn, myADONETConnection);
+                                            deleteDateColumnStatement.ExecuteNonQuery();
+
+                                            string FileArrived = "update Parameters set Parameter_Value = '1' where Parameter_Name = 'p_NewFileArrived'";
+                                            SqlCommand FileArrivedtatement = new SqlCommand(FileArrived, myADONETConnection);
+                                            FileArrivedtatement.ExecuteNonQuery();
+
+                                        }
+                                        else
+                                        {
+                                            // APPEND FILE LOAD
+                                            ////MessageBox.Show("Table exist: "+ Table_Already_Existence);
+                                            if (Table_Already_Existence != Convert.ToString('Y'))
+                                            {
+
+                                                // AG-2690 STARTS HERE
+
+                                                /* 
+                                                LOGIC TO FIGURE OUT WHETHER TO LOAD FILE OR REJECT IT BASED ON SCHEMA STARTS HERE
+                                                
+                                                
+                                                */
+
+                                                for (int i = 0; i < dt.Columns.Count; i++)
+                                                {
+                                                    if (i != dt.Columns.Count - 1)
+                                                        ExcelHeaderColumn += "'" + dt.Columns[i].ColumnName + "'" + ",";
+                                                    else
+                                                        ExcelHeaderColumn += "'" + dt.Columns[i].ColumnName + "'";
+                                                }
+
+                                                SQLQueryToGetMatchingColumn = "select STUFF((Select  ','''+Column_Name+''''  from Information_schema.Columns where Table_Name= '" + FullTableName + "' and COLUMN_NAME NOT IN ('PK_ID','isDeleted','Delete_Date') order by ORDINAL_POSITION for xml path('')),1,1,'') AS ColumnList";
+                                                myADONETConnection = (SqlConnection)(Dts.Connections["DBConn"].AcquireConnection(Dts.Transaction) as SqlConnection);
+                                                //MessageBox.Show(SQLQueryToGetMatchingColumn.ToString());
+                                                //break;
+                                                //Get Matching Column List from SQL Server
+                                                string SQLColumnList = "";
+                                                SqlCommand cmd = myADONETConnection.CreateCommand();
+                                                cmd.CommandText = SQLQueryToGetMatchingColumn;
+                                                SQLColumnList = (string)cmd.ExecuteScalar();
+
+                                                //MessageBox.Show("APPEND EXCEL Matching Columns: " + ExcelHeaderColumn);
+                                                //MessageBox.Show("APPEND LZ TABLE Matching Columns: " + SQLColumnList);
+                                                //break;
+                                                if (String.Equals(SQLColumnList, ExcelHeaderColumn))
+                                                {
+                                                    ValidationFlag = 1;
+                                                }
+                                                else
+                                                {
+                                                    ValidationFlag = 0;
+                                                }
+
+
+                                                if (ValidationFlag == 0)
+                                                {
+                                                    string updateQuery_DML = "update Audit_Logs set status = @status, [Error Description] = @errorDescription, End_time = GETDATE(), Processed_TimeStamp = '" + datetime + "' WHERE [ID] = (SELECT MAX([ID]) FROM Audit_Logs WHERE End_time IS NULL)";
+
+                                                    string errorDescription = "Please upload the file with same format as of previous files";
+                                                    SqlCommand updateQuery_DML_CMD = new SqlCommand(updateQuery_DML, myADONETConnection);
+                                                    updateQuery_DML_CMD.Parameters.AddWithValue("@status", "-1".ToString());
+                                                    updateQuery_DML_CMD.Parameters.AddWithValue("@errorDescription", errorDescription);
+
+                                                    //MessageBox.Show(updateQuery_DML);
+
+                                                    updateQuery_DML_CMD.ExecuteNonQuery();
+
+                                                    // MOVING THE FILE TO 'FAILED_FILES' FOLDER'
+                                                    cnn.Close();
+                                                    File.Move(filename, ArchiveFolder.Replace("Archive", "Failed_Files") + "\\" + CurrentYear+"_"+ (Filename_archive.Replace(SourceFolderPath, "")).Replace("\\", "") + "_" + datetime + ".xlsx");
+
+                                                    // SKIP THIS ITERATION OF FILE
+                                                    continue;
+                                                }
+                                                //MessageBox.Show("APPEND WRONG!!");
+                                                SqlBulkCopy blk = new SqlBulkCopy(myADONETConnection);
+                                                blk.DestinationTableName = "[LZ_" + CurrentYear + "_" + TableName + "]";
+                                                blk.WriteToServer(dt);
+
+                                                string logging_2 = "UPDATE [Audit_Logs] SET [Status] = 2, End_time = GETDATE(),Processed_TimeStamp = '" + datetime + "' WHERE ID = (SELECT MAX(ID) FROM Audit_Logs WHERE [FILE_ID] = " + File_Id + ") ";
+                                                SqlCommand logging_2Statement = new SqlCommand(logging_2, myADONETConnection);
+                                                logging_2Statement.ExecuteNonQuery();
+
+                                                string FileArrived = "update Parameters set Parameter_Value = '1' where Parameter_Name = 'p_NewFileArrived'";
+                                                SqlCommand FileArrivedtatement = new SqlCommand(FileArrived, myADONETConnection);
+                                                FileArrivedtatement.ExecuteNonQuery();
+
+                                                
+                                            }
+                                            else
+                                            {
+
+                                                string DroptableDDL_NE = "IF NOT EXISTS( SELECT * FROM sys.objects WHERE name = 'LZ_" + CurrentYear + "_" + TableName + "' AND type = 'U' )";
+                                                string tableDDL = " Create table [LZ_" + CurrentYear + "_" + TableName + "]";
+                                                tableDDL += "(";
+                                                for (int i = 0; i < dt.Columns.Count; i++)
+                                                {
+                                                    if (i != dt.Columns.Count - 1)
+                                                        tableDDL += "[" + dt.Columns[i].ColumnName + "] " + "NVarchar(max)" + ",";
+                                                    else
+                                                        tableDDL += "[" + dt.Columns[i].ColumnName + "] " + "NVarchar(max)";
+                                                }
+                                                tableDDL += ")";
+
+
+                                                SqlCommand myCommand = new SqlCommand(DroptableDDL_NE + tableDDL, myADONETConnection);
+                                                myCommand.ExecuteNonQuery();
+
+                                                SqlBulkCopy blk_NE = new SqlBulkCopy(myADONETConnection);
+                                                blk_NE.DestinationTableName = "[LZ_" + CurrentYear + "_" + TableName + "]";
+                                                blk_NE.WriteToServer(dt);
+
+                                                string Altertable = "ALTER TABLE [LZ_" + CurrentYear + "_" + TableName + "] add PK_ID INT IDENTITY(1,1)";
+                                                ////MessageBox.Show(Altertable);
+                                                SqlCommand AltertableStatement = new SqlCommand(Altertable, myADONETConnection);
+                                                AltertableStatement.ExecuteNonQuery();
+
+                                                string isDeleteColumn = "ALTER TABLE [LZ_" + CurrentYear + "_" + TableName + "] add isDeleted INT NOT NULL default  0";
+                                                ////MessageBox.Show(Altertable);
+                                                SqlCommand isDeleteColumnStatement = new SqlCommand(isDeleteColumn, myADONETConnection);
+                                                isDeleteColumnStatement.ExecuteNonQuery();
+
+                                                string deleteDateColumn = "ALTER TABLE [LZ_" + CurrentYear + "_" + TableName + "] add Delete_Date datetime not null default '1800-07-16 00:00:00.000'";
+                                                ////MessageBox.Show(Altertable);
+                                                SqlCommand deleteDateColumnStatement = new SqlCommand(deleteDateColumn, myADONETConnection);
+                                                deleteDateColumnStatement.ExecuteNonQuery();
+
+                                                string logging_2 = "UPDATE [Audit_Logs] SET [Status] = 2, End_time = GETDATE(), Processed_TimeStamp = '" + datetime + "' WHERE ID = (SELECT MAX(ID) FROM Audit_Logs WHERE [FILE_ID] = " + File_Id + ") ";
+                                                ////MessageBox.Show(logging_2);
+                                                SqlCommand logging_2Statement = new SqlCommand(logging_2, myADONETConnection);
+                                                logging_2Statement.ExecuteNonQuery();
+
+                                                string FileArrived = "update Parameters set Parameter_Value = '1' where Parameter_Name = 'p_NewFileArrived'";
+                                                SqlCommand FileArrivedtatement = new SqlCommand(FileArrived, myADONETConnection);
+                                                FileArrivedtatement.ExecuteNonQuery();
+
+
+
+                                            }
+
+                                        }
+
+
+                                        cnn.Close();
+                                        File.Move(filename, ArchiveFolder + "\\" + CurrentYear+"_"+(Filename_archive.Replace(SourceFolderPath, "")).Replace("\\", "") + "_" + datetime + ".xlsx");
+
+                                        string logging_Final = "UPDATE [Audit_Logs] SET [Status] = 4, End_time = GETDATE(), Processed_TimeStamp = '" + datetime + "' WHERE ID = (SELECT MAX(ID) FROM Audit_Logs WHERE [FILE_ID] = " + File_Id + ") and status=2 ";
+                                        ////MessageBox.Show(logging_Final);
+                                        SqlCommand logging_FinalStatement = new SqlCommand(logging_Final, myADONETConnection);
+                                        logging_FinalStatement.ExecuteNonQuery();
+
+
+                                        string FileArrived_Finel = "update Parameters set Parameter_Value = '1' where Parameter_Name = 'p_NewFileArrived'";
+                                        SqlCommand FileArrivedtatement_Final = new SqlCommand(FileArrived_Finel, myADONETConnection);
+                                        FileArrivedtatement_Final.ExecuteNonQuery();
+
+
+                                    }
+                                }
+                            }
+                        }
+
+                        Dts.TaskResult = (int)ScriptResults.Success;
+                    }
+                
+                }
+                
+                catch (Exception e)
+                {
+                    
+                   // MessageBox.Show(e.Message);
+                    string Filename_archive = filename.Replace(".xlsx", "").Replace(".xls", "");
+                    string ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filename + ";Extended Properties=\"Excel 12.0;HDR=" + "Yes" + ";IMEX=1\"";
+
+                    string failed_Files_folder = ArchiveFolder.Replace("Archive", "Failed_Files") + "\\"+CurrentYear+'_' +(Filename_archive.Replace(SourceFolderPath,"")).Replace("\\","")+"_"+datetime+".xlsx";
+
+                    //MessageBox.Show(failed_Files_folder);
+
+                  
+                    OleDbConnection myConn = new OleDbConnection(ConStr);
+                    ////MessageBox.Show(ConStr);
+                    //Get Sheet Name
+
+                    myConn.Open();
+                    
+
+                    //   SqlConnection myADONETConnection = new SqlConnection();
+                    //   myADONETConnection = (SqlConnection)(Dts.Connections["DBConn"].AcquireConnection(Dts.Transaction) as SqlConnection);
+
+                   // //MessageBox.Show(e.Message);
+                    string new_name_of_file = CurrentYear + '_' + filename.Replace(SourceFolderPath, "").Replace("\\", "");
+
+
+                    if (e.Message.ToString() == "Could not find a part of the path.")
+                    {
+                        string logging_4 = "UPDATE [Audit_Logs] SET [Status] = 2,[Error Description] = 'Could not find a part of the path.', End_time = GETDATE(), Processed_TimeStamp='" + datetime + "' WHERE ID = (SELECT MAX(ID) FROM Audit_Logs WHERE [FILE_ID] = "+ File_Id+")";
+                        ////MessageBox.Show("Exception query: " + logging_4.ToString());
+                        SqlCommand myCommand1 = new SqlCommand(logging_4, myADONETConnection);
+                        myCommand1.ExecuteNonQuery();
+                    }
+                    else
+                    {
+
+                  
+                    string logging_E = "UPDATE [Audit_Logs] SET  Processed_TimeStamp = '" + datetime + "' , [Error Description] = @errorMessage , End_time = GETDATE(), [Status] = -1 WHERE ID = (SELECT MAX(ID) FROM Audit_Logs WHERE [FILE_ID] = " + File_Id + ")";
+                    ////MessageBox.Show(logging_E);
+                    SqlCommand logging_EStatement = new SqlCommand(logging_E, myADONETConnection);
+                    logging_EStatement.Parameters.AddWithValue("@errorMessage", e.Message);
+                    logging_EStatement.ExecuteNonQuery();
+
+                    string Update_WAL = "update A set status = 3 from WebAttachmentLogs A inner join (select FileName, max(id) as id from WebAttachmentLogs group by FileName)B on a.FileName = b.FileName and a.Id = b.id where a.FileName = '" + new_name_of_file + "'"; //filename.Replace(SourceFolderPath, "").Replace("\\", "") + "'";
+                    SqlCommand Update_WALStatement = new SqlCommand(Update_WAL, myADONETConnection);
+                    Update_WALStatement.ExecuteNonQuery();
+
+                    }
+                    myConn.Close();
+                    
+                    File.Move(filename, failed_Files_folder);
+
+                }
+            }
+
+        }
+
+
+        public int CheckFileStatusBeforeProcessing(string currentFileName)
+        {
+            // MessageBox.Show(currentFileName);
+            SqlConnection myADONETConnection = new SqlConnection();
+            myADONETConnection = (SqlConnection)(Dts.Connections["DBConn"].AcquireConnection(Dts.Transaction) as SqlConnection);
+
+            SqlCommand cmd = new SqlCommand("USP_CheckFileStatusBeforeProcessing", myADONETConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@fileName", SqlDbType.NVarChar).Value = currentFileName;
+            cmd.Parameters.Add("@status", SqlDbType.Int);
+            cmd.Parameters["@status"].Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            int status = (int)cmd.Parameters["@status"].Value;
+            //  MessageBox.Show(status.ToString());
+            return status;
+        }
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="ST_1a242c287a194e36bac5eb679362ac44.csproj"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8312835A-6420-4460-BA59-229C2FDF1603}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_049a15ba84244772b5e30d6d2eb53f13</RootNamespace>
+    <AssemblyName>ST_1a242c287a194e36bac5eb679362ac44</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST140</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_1a242c287a194e36bac5eb679362ac44</msb:CodeName>
+		<msb:DisplayName>ST_1a242c287a194e36bac5eb679362ac44</msb:DisplayName>
+		<msb:ProjectId>{D9E3DDE0-00B1-4069-B6E3-F67B46B44938}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_1a242c287a194e36bac5eb679362ac44.csproj"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+		<msb:Breakpoint Include="a9ac66c36be94f5d9aedd1a85b90642e">
+			<msb:FileName>ScriptMain.cs</msb:FileName>
+			<msb:LineNumber>101</msb:LineNumber>
+			<msb:ColumnNumber>13</msb:ColumnNumber>
+			<msb:Enabled>True</msb:Enabled>
+			<msb:ConditionType>1</msb:ConditionType>
+			<msb:Condition>
+      </msb:Condition>
+			<msb:Language>C#</msb:Language>
+			<msb:HitCountType>1</msb:HitCountType>
+			<msb:HitCountTarget>1</msb:HitCountTarget>
+		</msb:Breakpoint>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_049a15ba84244772b5e30d6d2eb53f13.Properties.Settings.get_Default():ST_049a15ba84244772b5e30d6d2eb53f13.Properties.Sett" +
+    "ings")]
+
+namespace ST_049a15ba84244772b5e30d6d2eb53f13.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_049a15ba84244772b5e30d6d2eb53f13")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_049a15ba84244772b5e30d6d2eb53f13")]
+[assembly: AssemblyCopyright("Copyright @  2019")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_049a15ba84244772b5e30d6d2eb53f13.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_049a15ba84244772b5e30d6d2eb53f13.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_049a15ba84244772b5e30d6d2eb53f13.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_049a15ba84244772b5e30d6d2eb53f13.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_049a15ba84244772b5e30d6d2eb53f13.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <BinaryItem
+                Name="ST_1a242c287a194e36bac5eb679362ac44.dll">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
+MAAAChESETAoMQAACt4AEREXWBMREREREI5pP2Tu//8qAAAAQUwAAAIAAABVAgAAXQAAALICAAAV
+AAAAAAAAAAIAAABbBAAA5wwAAEIRAAAVAAAAAAAAAAAAAACPAQAA2Q8AAGgRAACrAQAAFwAAARMw
+BACpAAAAAgAAEXMZAAAKCgIoEgAACm8aAAAKclUBAHBvGwAACgIoEgAACm8cAAAKbx0AAAp1DwAA
+AQpyVRkAcAZzLgAACiUab0oAAAolb0EAAApynRkAcB8MjDoAAAFvQgAACgNvSwAACiVvQQAACnKb
+DgBwHm9MAAAKJiVvQQAACnKbDgBwb00AAAoYb04AAAolby8AAAomb0EAAApymw4AcG9NAAAKb08A
+AAqlLgAAASoeAihQAAAKKh4CKFEAAAoqrn4BAAAELR5ysRkAcNADAAACKFIAAApvUwAACnNUAAAK
+gAEAAAR+AQAABCoafgIAAAQqHgKAAgAABCoafgMAAAQqHgIoVQAACioucwkAAAaAAwAABCoAQlNK
+QgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAEAYAACN+AAB8BgAAOAkAACNTdHJpbmdz
+AAAAALQPAAAkGgAAI1VTANgpAAAQAAAAI0dVSUQAAADoKQAArAIAACNCbG9iAAAAAAAAAAIAAAFX
+HaIBCQMAAAD6ATMAFgAAAQAAAD8AAAAFAAAABgAAAAoAAAACAAAAVQAAAAIAAAAQAAAAAgAAAAIA
+AAADAAAABAAAAAEAAAAFAAAAAQAAAAEAAAAAAAEFAQAAAAAABgB1AxQHBgAEBBQHBgDBAgEHDwCI
+BwAABgDuAqQFBgBYA6QFBgA5A6QFBgDrA6QFBgCVA6QFBgCuA6QFBgAFA6QFBgAgA04ECgDJA7AE
+CgAXArAEDgAWBosIBgCkATcFDgD0BZcADgAkAYsABgDaBgkIDgDgCIsABgA3ATcFDgD1CIsIBgBF
+BjcFBgA+BTcFBgCkAgEHBgBpCDcFBgCABjQHBgBiBn8FEgB0AusEEgDVAusEEgBOAmoFBgCJAhQH
+CgDZBLAEFgDRB60BFgAuAa0BBgBqBDcFBgARCVoAFgAgCK0BFgCQBq0BDgD3BU8GDgC2AJcABgDB
+ADcFDgDiBYsADgAzAosABgC3CDcFBgADADcFDgDhAIsIDgDJAE8GBgBnAVoADgDGAJcADgC7BpcA
+DgC+Bk8GDgC2BYsADgBfBYsADgDLBYsIDgCuBosIDgDbAYsADgDNAYsADgCiBk8GDgAyBosABgDi
+ATcFBgBDATcFBgDsCKQFAAAAAFEAAAAAAAEAAQABABAAVAUtADkAAQABAAAAEAA7B5cHaQABAAQA
+AAEQAOQHlwd9AAMACAADAQAASwgAAGEABAALABEAQwWqAREABwKuAREA9ACyAQYGgwC2AVaAOwi5
+AVaA5wG5AVAgAAAAAIYAWgUGAAEA0DMAAAAAhgBxBL0BAQCFNAAAAACGGPQGBgACAI00AAAAAIMY
+9AYGAAIAlTQAAAAAkwh8BsIBAgDBNAAAAACTCO8BxwECAMg0AAAAAJMI+wHMAQIA0DQAAAAAlghw
+CNIBAwDXNAAAAACGGPQGBgADAN80AAAAAJEY+gbXAQMAAAABAIUBAAABAEMECQD0BgEAEQD0BgYA
+GQD0BgoAKQD0BhAAMQD0BhAAOQD0BhAAQQD0BhAASQD0BhAAUQD0BhAAWQD0BhAAYQD0BhAAaQD0
+BgYAyQD0BgYA8QD0BhUAAQH0BgYAgQDYCGAAgQBoBGUAcQBDCGoACQHNB3AAEQEuBXYAGQEiBH0A
+0QBoBIEAIQFiCIUAKQHbB40AeQD0BgYACQEcCJQAMQEuBZoACQGUBX0AOQEEBqEAIQHsAKYAIQH0
+B6wAIQFiCLEAiQD0BhAAQQFPBQYASQHGB7cAiQAQAbwAkQBZCMYAYQHmBswAmQChCH0AoQAuBdEA
+mQC/CNYAqQBsAgYAaQEBANoAIQFiCN8AcQFoBIEAeQH0BuYAgQEBCe0AQQFmAgYAiQFJBPEAkQH0
+BvcAmQH0Bv4AkQD0BgYAoQEpBQUBYQGtCO0AaQEBAAsBaQFoBBABIQEnCRUBkQD9BxsBqQEuBSEB
+sQGVAYEAeQDTACgBgQHICBAAgQFuBn0AIQHtBxUBeQEsCC4BuQE2BDQBIQFiCDwBsQD0BkIBsQBs
+ARAAsQDMBkgBCQF8CAEAuQAEAYEAIQEbCRUBgQHXAVMB2QEsBFoBuQGyAF8BuQEuBWkB2QEkBnAB
+2QEiBH0AcQD0BgYA0QD0BgYA6QFVAXcB6QHoCIAB2QD0BoYB+QD0BgYACAAUAKABCAAYAKUBKQBz
+ABICLgALAOoBLgATAPMBLgAbABICLgAjABsCLgArAEQCLgAzAEQCLgA7AEQCLgBDABsCLgBLAEoC
+LgBTAEQCLgBbAGECQwBjAKUBSQBzABICYQB7AKUBYwBrAKUBGwBOAQMAAQAEAAMAAACABtsBAAAP
+AuABAAB0COUBAgAFAAMAAgAGAAUAAQAHAAUAAgAIAAcABIAAAAEAAAC8IUOhAAAAAAAACQAAAAQA
+AAAAAAAAAAAAAI4BqQAAAAAADgAAAAAAAAAAAAAAlwGRBAAAAAAEAAAAAAAAAAAAAACOAYsAAAAA
+AAQAAAAAAAAAAAAAAI4BNwUAAAAADgAAAAAAAAAAAAAAlwFkAAAAAAAAAAAAAQAAAEUHAAAFAAIA
+AAAAAABUb0ludDMyAFNUXzFhMjQyYzI4N2ExOTRlMzZiYWM1ZWI2NzkzNjJhYzQ0AFNUX2MyMGRl
+OWEwNTBkODQ4MTA5Yzc0YWQxNDcwMGE0Y2E1ADxNb2R1bGU+AFN5c3RlbS5JTwBNaWNyb3NvZnQu
+U3FsU2VydmVyLk1hbmFnZWREVFMAdmFsdWVfXwBTeXN0ZW0uRGF0YQBTeXN0ZW0uRGF0YS5PbGVE
+YgBtc2NvcmxpYgBBZGQAT2xlRGJTY2hlbWFHdWlkAE9sZURiQ29tbWFuZABDcmVhdGVDb21tYW5k
+AFNxbENvbW1hbmQAUmVwbGFjZQBkZWZhdWx0SW5zdGFuY2UAZ2V0X01lc3NhZ2UAR2V0T2xlRGJT
+Y2hlbWFUYWJsZQBEYXRhVGFibGUAVmFyaWFibGUASURpc3Bvc2FibGUAUnVudGltZVR5cGVIYW5k
+bGUAR2V0VHlwZUZyb21IYW5kbGUARmlsZQBzZXRfRGVzdGluYXRpb25UYWJsZU5hbWUAY3VycmVu
+dEZpbGVOYW1lAGdldF9Db2x1bW5OYW1lAERhdGVUaW1lAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRz
+LlJ1bnRpbWUAU3FsRGJUeXBlAHNldF9Db21tYW5kVHlwZQBGYWlsdXJlAGdldF9DdWx0dXJlAHNl
+dF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJhc2UASW50
+ZXJuYWxEYXRhQ29sbGVjdGlvbkJhc2UAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAQ2xvc2UARGlz
+cG9zZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1
+Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3Nh
+YmxlQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRy
+aWJ1dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJp
+YnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNB
+dHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmli
+dXRlAFNTSVNTY3JpcHRUYXNrRW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRy
+aWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAZ2V0X1ZhbHVlAHNldF9WYWx1ZQBB
+ZGRXaXRoVmFsdWUAdmFsdWUATW92ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRvU3RyaW5n
+AENoZWNrRmlsZVN0YXR1c0JlZm9yZVByb2Nlc3NpbmcATWljcm9zb2Z0LlNxbFNlcnZlci5TY3Jp
+cHRUYXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAU2NyaXB0T2Jq
+ZWN0TW9kZWwAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNUXzFhMjQyYzI4N2ExOTRlMzZiYWM1ZWI2
+NzkzNjJhYzQ0LmRsbABGaWxsAGdldF9JdGVtAFN5c3RlbQBFbnVtAHJlc291cmNlTWFuAE9wZW4A
+U2NyaXB0TWFpbgBEYXRhQ29sdW1uAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxp
+emF0aW9uAGdldF9UcmFuc2FjdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBEYXRhQ29sdW1uQ29sbGVj
+dGlvbgBTcWxQYXJhbWV0ZXJDb2xsZWN0aW9uAERhdGFSb3dDb2xsZWN0aW9uAE9sZURiQ29ubmVj
+dGlvbgBBY3F1aXJlQ29ubmVjdGlvbgBTcWxDb25uZWN0aW9uAHNldF9EaXJlY3Rpb24AUGFyYW1l
+dGVyRGlyZWN0aW9uAEV4Y2VwdGlvbgBTeXN0ZW0uRGF0YS5Db21tb24AQ3VsdHVyZUluZm8ARXhl
+Y3V0ZVNjYWxhcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAENvbm5lY3Rpb25NYW5hZ2VyAERiUGFyYW1l
+dGVyAFNxbFBhcmFtZXRlcgBPbGVEYkRhdGFBZGFwdGVyAFdyaXRlVG9TZXJ2ZXIASUVudW1lcmF0
+b3IAR2V0RW51bWVyYXRvcgAuY3RvcgAuY2N0b3IAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5S
+dW50aW1lLkNvbXBpbGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNlcwBTVF8wNDlhMTViYTg0MjQ0
+NzcyYjVlMzBkNmQyZWI1M2YxMy5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdn
+aW5nTW9kZXMAU1RfMDQ5YTE1YmE4NDI0NDc3MmI1ZTMwZDZkMmViNTNmMTMuUHJvcGVydGllcwBU
+YWJsZXMAZ2V0X1ZhcmlhYmxlcwBHZXRGaWxlcwBTZXR0aW5ncwBFcXVhbHMAQ29udGFpbnMAZ2V0
+X0NvbHVtbnMAU3lzdGVtLkNvbGxlY3Rpb25zAGdldF9Db25uZWN0aW9ucwBnZXRfUGFyYW1ldGVy
+cwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBnZXRfUm93cwBDb25jYXQAT2JqZWN0AGdl
+dF9EZWZhdWx0AHNldF9UYXNrUmVzdWx0AFN5c3RlbS5EYXRhLlNxbENsaWVudABnZXRfQ3VycmVu
+dABnZXRfQ291bnQAQ29udmVydABNb3ZlTmV4dABzZXRfQ29tbWFuZFRleHQAZ2V0X05vdwBEYXRh
+Um93AGdldF9Bc3NlbWJseQBTcWxCdWxrQ29weQBFeGVjdXRlTm9uUXVlcnkARGlyZWN0b3J5AG9w
+X0VxdWFsaXR5AG9wX0luZXF1YWxpdHkAAAAAAB15AHkAeQB5AE0ATQBkAGQASABIAG0AbQBzAHMA
+AClVAHMAZQByADoAOgBQAF8AUwBvAHUAcgBjAGUARgBvAGwAZABlAHIAACtVAHMAZQByADoAOgBQ
+AF8AQQByAGMAaABpAHYAZQBGAG8AbABkAGUAcgAAG1UAcwBlAHIAOgA6AEYAaQBsAGUAXwBJAGQA
+AB1VAHMAZQByADoAOgBGAGkAbABlAG4AYQBtAGUAABlVAHMAZQByADoAOgBQAHIAZQBmAGkAeAAA
+I1UAcwBlAHIAOgA6AEMAdQByAHIAZQBuAHQAWQBlAGEAcgAAHVUAcwBlAHIAOgA6AEkAcwBBAHAA
+cABlAG4AZAAAO1UAcwBlAHIAOgA6AFQAYQBiAGwAZQBfAEEAbAByAGUAYQBkAHkAXwBFAHgAaQBz
+AHQAZQBuAGMAZQAAB0wAWgBfAAADXwAAAQANRABCAEMAbwBuAG4AAAsuAHgAbABzAHgAAAkuAHgA
+bABzAAALLgBYAEwAUwBYAAAJLgBYAEwAUwAAB1kARQBTAABdUAByAG8AdgBpAGQAZQByAD0ATQBp
+AGMAcgBvAHMAbwBmAHQALgBBAEMARQAuAE8ATABFAEQAQgAuADEAMgAuADAAOwBEAGEAdABhACAA
+UwBvAHUAcgBjAGUAPQAASzsARQB4AHQAZQBuAGQAZQBkACAAUAByAG8AcABlAHIAdABpAGUAcwA9
+ACIARQB4AGMAZQBsACAAMQAyAC4AMAA7AEgARABSAD0AABE7AEkATQBFAFgAPQAxACIAABVUAEEA
+QgBMAEUAXwBOAEEATQBFAAADJAAAHUYAaQBsAHQAZQByAEQAYQB0AGEAYgBhAHMAZQAAA1wAAGtV
+AFAARABBAFQARQAgAEEAdQBkAGkAdABfAEwAbwBnAHMAIABzAGUAdAAgAFMAdABhAHQAdQBzAD0A
+MAAgACwAUAByAG8AYwBlAHMAcwBlAGQAXwBUAGkAbQBlAFMAdABhAG0AcAA9ACcAAUEnACwAWwBF
+AHIAcgBvAHIAIABEAGUAcwBjAHIAaQBwAHQAaQBvAG4AXQA9ACcARgBpAGwAZQAgAGgAYQBzACAA
+AWEgAHMAaABlAGUAdABzACcALAAgAFMAdABhAHIAdABfAHQAaQBtAGUAPQBHAEUAVABEAEEAVABF
+ACgAKQAgAHcAaABlAHIAZQAgAEYAaQBsAGUATgBhAG0AZQAgAD0AJwABHScAIABhAG4AZAAgAFMA
+dABhAHQAdQBzAD0ANQABgRtJAE4AUwBFAFIAVAAgAEkATgBUAE8AIABbAEEAdQBkAGkAdABfAEwA
+bwBnAHMAXQAgACgAWwBGAEkATABFAF8ASQBEAF0ALABbAEYAaQBsAGUATgBhAG0AZQBdACwAWwBF
+AHIAcgBvAHIAIABEAGUAcwBjAHIAaQBwAHQAaQBvAG4AXQAsAFMAdABhAHIAdABfAHQAaQBtAGUA
+LABbAFMAdABhAHQAdQBzAF0ALABQAHIAbwBjAGUAcwBzAGUAZABfAFQAaQBtAGUAUwB0AGEAbQBw
+ACwASQBuAHMAZQByAHQAXwBEAGEAdABlACwAVQBwAGQAYQB0AGUAZABfAEQAYQB0AGUAKQAgAFYA
+QQBMAFUARQBTACAAKAAABSwAJwABGScALAAnAEYAaQBsAGUAIABoAGEAcwAgAAEvIABzAGgAZQBl
+AHQAcwAnACwAIABHAEUAVABEAEEAVABFACgAKQAsADAALAAnAAEtJwAsAEcARQBUAEQAQQBUAEUA
+KAApACwARwBFAFQARABBAFQARQAoACkAKQABgY11AHAAZABhAHQAZQAgAEEAIABzAGUAdAAgAHMA
+dABhAHQAdQBzACAAPQAgADMAIABmAHIAbwBtACAAVwBlAGIAQQB0AHQAYQBjAGgAbQBlAG4AdABM
+AG8AZwBzACAAQQAgAGkAbgBuAGUAcgAgAGoAbwBpAG4AIAAoAHMAZQBsAGUAYwB0ACAARgBpAGwA
+ZQBOAGEAbQBlACwAIABtAGEAeAAoAGkAZAApACAAYQBzACAAaQBkACAAZgByAG8AbQAgAFcAZQBi
+AEEAdAB0AGEAYwBoAG0AZQBuAHQATABvAGcAcwAgAGcAcgBvAHUAcAAgAGIAeQAgAEYAaQBsAGUA
+TgBhAG0AZQApAEIAIABvAG4AIABhAC4ARgBpAGwAZQBOAGEAbQBlACAAPQAgAGIALgBGAGkAbABl
+AE4AYQBtAGUAIABhAG4AZAAgAGEALgBJAGQAIAA9ACAAYgAuAGkAZAAgAHcAaABlAHIAZQAgAGEA
+LgBGAGkAbABlAE4AYQBtAGUAIAA9ACAAJwABAycAAQ9BAHIAYwBoAGkAdgBlAAAZRgBhAGkAbABl
+AGQAXwBGAGkAbABlAHMAABdzAGUAbABlAGMAdAAgACoALAAgACcAASknACAAYQBzACAARgBpAGwA
+ZQBuAGEAbQBlACAAZgByAG8AbQAgAFsAAQNdAABrVQBQAEQAQQBUAEUAIABBAHUAZABpAHQAXwBM
+AG8AZwBzACAAcwBlAHQAIABTAHQAYQB0AHUAcwA9ADAALAAgAFAAcgBvAGMAZQBzAHMAZQBkAF8A
+VABpAG0AZQBTAHQAYQBtAHAAPQAnAAGApycAIAAsAFsARQByAHIAbwByACAARABlAHMAYwByAGkA
+cAB0AGkAbwBuAF0APQAnAEYAaQBsAGUAIABoAGEAcwAgADAAIAByAG8AdwBzAC4AJwAsACAAUwB0
+AGEAcgB0AF8AdABpAG0AZQAgAD0AIABHAEUAVABEAEEAVABFACgAKQAgAHcAaABlAHIAZQAgAEYA
+aQBsAGUATgBhAG0AZQAgAD0AJwABRycALAAnAEYAaQBsAGUAIABoAGEAcwAgADAAIAByAG8AdwBz
+AC4AJwAsACAARwBFAFQARABBAFQARQAoACkALAAwACwAJwABb1UAUABEAEEAVABFACAAQQB1AGQA
+aQB0AF8ATABvAGcAcwAgAHMAZQB0ACAAUwB0AGEAdAB1AHMAIAA9ACAAMAAsACAAUAByAG8AYwBl
+AHMAcwBlAGQAXwBUAGkAbQBlAFMAdABhAG0AcAA9ACcAAVknACwAIABTAHQAYQByAHQAXwB0AGkA
+bQBlACAAPQAgAEcARQBUAEQAQQBUAEUAKAApACAAdwBoAGUAcgBlACAARgBpAGwAZQBOAGEAbQBl
+ACAAPQAgACcAAYDzSQBOAFMARQBSAFQAIABJAE4AVABPACAAWwBBAHUAZABpAHQAXwBMAG8AZwBz
+AF0AIAAoAFsARgBJAEwARQBfAEkARABdACwAWwBGAGkAbABlAE4AYQBtAGUAXQAsAFsARQByAHIA
+bwByACAARABlAHMAYwByAGkAcAB0AGkAbwBuAF0ALABTAHQAYQByAHQAXwB0AGkAbQBlACwAWwBT
+AHQAYQB0AHUAcwBdACwASQBuAHMAZQByAHQAXwBEAGEAdABlACwAVQBwAGQAYQB0AGUAZABfAEQA
+YQB0AGUAKQAgAFYAQQBMAFUARQBTACAAKAAATScALAAnACcALAAgAEcARQBUAEQAQQBUAEUAKAAp
+ACwAMAAsAEcARQBUAEQAQQBUAEUAKAApACwARwBFAFQARABBAFQARQAoACkAKQABBScALAABgMNz
+AGUAbABlAGMAdAAgAFMAVABVAEYARgAoACgAUwBlAGwAZQBjAHQAIAAgACcALAAnACcAJwArAEMA
+bwBsAHUAbQBuAF8ATgBhAG0AZQArACcAJwAnACcAIAAgAGYAcgBvAG0AIABJAG4AZgBvAHIAbQBh
+AHQAaQBvAG4AXwBzAGMAaABlAG0AYQAuAEMAbwBsAHUAbQBuAHMAIAB3AGgAZQByAGUAIABUAGEA
+YgBsAGUAXwBOAGEAbQBlAD0AIAAnAAGA/ScAIABhAG4AZAAgAEMATwBMAFUATQBOAF8ATgBBAE0A
+RQAgAE4ATwBUACAASQBOACAAKAAnAFAASwBfAEkARAAnACwAJwBpAHMARABlAGwAZQB0AGUAZAAn
+ACwAJwBEAGUAbABlAHQAZQBfAEQAYQB0AGUAJwApACAAbwByAGQAZQByACAAYgB5ACAATwBSAEQA
+SQBOAEEATABfAFAATwBTAEkAVABJAE8ATgAgAGYAbwByACAAeABtAGwAIABwAGEAdABoACgAJwAn
+ACkAKQAsADEALAAxACwAJwAnACkAIABBAFMAIABDAG8AbAB1AG0AbgBMAGkAcwB0AAGA/XUAcABk
+AGEAdABlACAAQQB1AGQAaQB0AF8ATABvAGcAcwAgAHMAZQB0ACAAcwB0AGEAdAB1AHMAIAA9ACAA
+QABzAHQAYQB0AHUAcwAsACAAWwBFAHIAcgBvAHIAIABEAGUAcwBjAHIAaQBwAHQAaQBvAG4AXQAg
+AD0AIABAAGUAcgByAG8AcgBEAGUAcwBjAHIAaQBwAHQAaQBvAG4ALAAgAEUAbgBkAF8AdABpAG0A
+ZQAgAD0AIABHAEUAVABEAEEAVABFACgAKQAsACAAUAByAG8AYwBlAHMAcwBlAGQAXwBUAGkAbQBl
+AFMAdABhAG0AcAAgAD0AIAAnAAGAkScAIABXAEgARQBSAEUAIABbAEkARABdACAAPQAgACgAUwBF
+AEwARQBDAFQAIABNAEEAWAAoAFsASQBEAF0AKQAgAEYAUgBPAE0AIABBAHUAZABpAHQAXwBMAG8A
+ZwBzACAAVwBIAEUAUgBFACAARQBuAGQAXwB0AGkAbQBlACAASQBTACAATgBVAEwATAApAAF5UABs
+AGUAYQBzAGUAIAB1AHAAbABvAGEAZAAgAHQAaABlACAAZgBpAGwAZQAgAHcAaQB0AGgAIABzAGEA
+bQBlACAAZgBvAHIAbQBhAHQAIABhAHMAIABvAGYAIABwAHIAZQB2AGkAbwB1AHMAIABmAGkAbABl
+AHMAAA9AAHMAdABhAHQAdQBzAAAFLQAxAAEjQABlAHIAcgBvAHIARABlAHMAYwByAGkAcAB0AGkA
+bwBuAABtSQBGACAARQBYAEkAUwBUAFMAIAAoAFMARQBMAEUAQwBUACAAKgAgAEYAUgBPAE0AIABz
+AHkAcwAuAG8AYgBqAGUAYwB0AHMAIABXAEgARQBSAEUAIABuAGEAbQBlACAAPQAgACcATABaAF8A
+AUMnACAAQQBOAEQAIAB0AHkAcABlACAAPQAgACcAVQAnACkAIABEAFIATwBQACAAVABBAEIATABF
+ACAAWwBMAFoAXwABBV0AOwAAI0MAcgBlAGEAdABlACAAdABhAGIAbABlACAAWwBMAFoAXwAAAygA
+AANbAAAhXQAgAE4AVgBhAHIAYwBoAGEAcgAoAG0AYQB4ACkALAAAH10AIABOAFYAYQByAGMAaABh
+AHIAKABtAGEAeAApAAADKQAAgKdVAFAARABBAFQARQAgAFsAQQB1AGQAaQB0AF8ATABvAGcAcwBd
+ACAAUwBFAFQAIABbAFMAdABhAHQAdQBzAF0AIAA9ACAAMQAsACAARQBuAGQAXwB0AGkAbQBlACAA
+PQAgAEcARQBUAEQAQQBUAEUAKAApACwAIABQAHIAbwBjAGUAcwBzAGUAZABfAFQAaQBtAGUAUwB0
+AGEAbQBwACAAPQAgACcAAX8nACAAVwBIAEUAUgBFACAASQBEACAAPQAgACgAUwBFAEwARQBDAFQA
+IABNAEEAWAAoAEkARAApACAARgBSAE8ATQAgAEEAdQBkAGkAdABfAEwAbwBnAHMAIABXAEgARQBS
+AEUAIABbAEYASQBMAEUAXwBJAEQAXQAgAD0AIAABBSkAIAAACVsATABaAF8AAICnVQBQAEQAQQBU
+AEUAIABbAEEAdQBkAGkAdABfAEwAbwBnAHMAXQAgAFMARQBUACAAWwBTAHQAYQB0AHUAcwBdACAA
+PQAgADIALAAgAEUAbgBkAF8AdABpAG0AZQAgAD0AIABHAEUAVABEAEEAVABFACgAKQAsACAAUABy
+AG8AYwBlAHMAcwBlAGQAXwBUAGkAbQBlAFMAdABhAG0AcAAgAD0AIAAnAAEhQQBMAFQARQBSACAA
+VABBAEIATABFACAAWwBMAFoAXwAAO10AIABhAGQAZAAgAFAASwBfAEkARAAgAEkATgBUACAASQBE
+AEUATgBUAEkAVABZACgAMQAsADEAKQAAT10AIABhAGQAZAAgAGkAcwBEAGUAbABlAHQAZQBkACAA
+SQBOAFQAIABOAE8AVAAgAE4AVQBMAEwAIABkAGUAZgBhAHUAbAB0ACAAIAAwAACAi10AIABhAGQA
+ZAAgAEQAZQBsAGUAdABlAF8ARABhAHQAZQAgAGQAYQB0AGUAdABpAG0AZQAgAG4AbwB0ACAAbgB1
+AGwAbAAgAGQAZQBmAGEAdQBsAHQAIAAnADEAOAAwADAALQAwADcALQAxADYAIAAwADAAOgAwADAA
+OgAwADAALgAwADAAMAAnAAGAq3UAcABkAGEAdABlACAAUABhAHIAYQBtAGUAdABlAHIAcwAgAHMA
+ZQB0ACAAUABhAHIAYQBtAGUAdABlAHIAXwBWAGEAbAB1AGUAIAA9ACAAJwAxACcAIAB3AGgAZQBy
+AGUAIABQAGEAcgBhAG0AZQB0AGUAcgBfAE4AYQBtAGUAIAA9ACAAJwBwAF8ATgBlAHcARgBpAGwA
+ZQBBAHIAcgBpAHYAZQBkACcAAYClVQBQAEQAQQBUAEUAIABbAEEAdQBkAGkAdABfAEwAbwBnAHMA
+XQAgAFMARQBUACAAWwBTAHQAYQB0AHUAcwBdACAAPQAgADIALAAgAEUAbgBkAF8AdABpAG0AZQAg
+AD0AIABHAEUAVABEAEEAVABFACgAKQAsAFAAcgBvAGMAZQBzAHMAZQBkAF8AVABpAG0AZQBTAHQA
+YQBtAHAAIAA9ACAAJwABdUkARgAgAE4ATwBUACAARQBYAEkAUwBUAFMAKAAgAFMARQBMAEUAQwBU
+ACAAKgAgAEYAUgBPAE0AIABzAHkAcwAuAG8AYgBqAGUAYwB0AHMAIABXAEgARQBSAEUAIABuAGEA
+bQBlACAAPQAgACcATABaAF8AASUnACAAQQBOAEQAIAB0AHkAcABlACAAPQAgACcAVQAnACAAKQAB
+JSAAQwByAGUAYQB0AGUAIAB0AGEAYgBsAGUAIABbAEwAWgBfAACAp1UAUABEAEEAVABFACAAWwBB
+AHUAZABpAHQAXwBMAG8AZwBzAF0AIABTAEUAVAAgAFsAUwB0AGEAdAB1AHMAXQAgAD0AIAA0ACwA
+IABFAG4AZABfAHQAaQBtAGUAIAA9ACAARwBFAFQARABBAFQARQAoACkALAAgAFAAcgBvAGMAZQBz
+AHMAZQBkAF8AVABpAG0AZQBTAHQAYQBtAHAAIAA9ACAAJwABHykAIABhAG4AZAAgAHMAdABhAHQA
+dQBzAD0AMgAgAABhOwBFAHgAdABlAG4AZABlAGQAIABQAHIAbwBwAGUAcgB0AGkAZQBzAD0AIgBF
+AHgAYwBlAGwAIAAxADIALgAwADsASABEAFIAPQBZAGUAcwA7AEkATQBFAFgAPQAxACIAAEVDAG8A
+dQBsAGQAIABuAG8AdAAgAGYAaQBuAGQAIABhACAAcABhAHIAdAAgAG8AZgAgAHQAaABlACAAcABh
+AHQAaAAuAACBGVUAUABEAEEAVABFACAAWwBBAHUAZABpAHQAXwBMAG8AZwBzAF0AIABTAEUAVAAg
+AFsAUwB0AGEAdAB1AHMAXQAgAD0AIAAyACwAWwBFAHIAcgBvAHIAIABEAGUAcwBjAHIAaQBwAHQA
+aQBvAG4AXQAgAD0AIAAnAEMAbwB1AGwAZAAgAG4AbwB0ACAAZgBpAG4AZAAgAGEAIABwAGEAcgB0
+ACAAbwBmACAAdABoAGUAIABwAGEAdABoAC4AJwAsACAARQBuAGQAXwB0AGkAbQBlACAAPQAgAEcA
+RQBUAEQAQQBUAEUAKAApACwAIABQAHIAbwBjAGUAcwBzAGUAZABfAFQAaQBtAGUAUwB0AGEAbQBw
+AD0AJwABYVUAUABEAEEAVABFACAAWwBBAHUAZABpAHQAXwBMAG8AZwBzAF0AIABTAEUAVAAgACAA
+UAByAG8AYwBlAHMAcwBlAGQAXwBUAGkAbQBlAFMAdABhAG0AcAAgAD0AIAAnAAGBFycAIAAsACAA
+WwBFAHIAcgBvAHIAIABEAGUAcwBjAHIAaQBwAHQAaQBvAG4AXQAgAD0AIABAAGUAcgByAG8AcgBN
+AGUAcwBzAGEAZwBlACAALAAgAEUAbgBkAF8AdABpAG0AZQAgAD0AIABHAEUAVABEAEEAVABFACgA
+KQAsACAAWwBTAHQAYQB0AHUAcwBdACAAPQAgAC0AMQAgAFcASABFAFIARQAgAEkARAAgAD0AIAAo
+AFMARQBMAEUAQwBUACAATQBBAFgAKABJAEQAKQAgAEYAUgBPAE0AIABBAHUAZABpAHQAXwBMAG8A
+ZwBzACAAVwBIAEUAUgBFACAAWwBGAEkATABFAF8ASQBEAF0AIAA9ACAAARtAAGUAcgByAG8AcgBN
+AGUAcwBzAGEAZwBlAABHVQBTAFAAXwBDAGgAZQBjAGsARgBpAGwAZQBTAHQAYQB0AHUAcwBCAGUA
+ZgBvAHIAZQBQAHIAbwBjAGUAcwBzAGkAbgBnAAATQABmAGkAbABlAE4AYQBtAGUAAHFTAFQAXwAw
+ADQAOQBhADEANQBiAGEAOAA0ADIANAA0ADcANwAyAGIANQBlADMAMABkADYAZAAyAGUAYgA1ADMA
+ZgAxADMALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAQskYdKb3S
+RYa2aSL73pa2AAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARF1RAczDg4ODg4ODg4ODg4ODggSPRFB
+HQ4IDg4OEkUSSQ4IEk0SURJVDhJREkkODg4SWQgOCBJZCA4ODhJZCBJdDg4OEkUOBAAAEUEEIAEO
+DgUgABKAhQUgABKAiQYgARKAjRwDIAAcAyAADgcABA4ODg4OBgACHQ4ODgUgABKAmQYgARKAnRwE
+IAEcHAUgAg4ODgQgAQIOBQABDh0OBAYRgKkJIAISSRGAqR0cBSAAEoCtBCAAEk0EIAEcDgMgAAIE
+AAEICAYAAw4ODg4GIAIBDhI9AyAACAUAAgEODgYgAgEOEkUGIAEBEoDJBSABCBJJBAABCA4EAAEO
+AwUAAgIODgUgABKA1QYgARKA2QgFIAASgL0FIAASgN0HIAISgOEOHAUAAg4ODgUgAQESPQUgAQES
+SQQHARI9BiABARGA5QQgAQEcCSACEoDhDhGA6QYgARKA4Q4GIAEBEYDxCAABEoD1EYD5BSAAEoD9
+ByACAQ4SgP0It3pcVhk04IkIiYRdzYCAzJEEAAAAAAQBAAAAAwYSbQMGEnEDBhIQAgYIAwYRFAQg
+AQgOBAAAEm0EAAAScQUAAQEScQQAABIQAwAAAQQIABJtBAgAEnEECAASEAgBAAgAAAAAAB4BAAEA
+VAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEIAQACAAAAAAAoAQAjU1RfMDQ5YTE1YmE4NDI0NDc3
+MmI1ZTMwZDZkMmViNTNmMTMAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAxOQAASQEAGi5ORVRG
+cmFtZXdvcmssVmVyc2lvbj12NC41AQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZyYW1l
+d29yayA0LjUAtAAAAM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVy
+LCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRv
+a2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQC
+AAAAAAAAAAAAAABQQURQQURQtAAAAGBiAAAAAAAAAAAAAHpiAAAAIAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAABsYgAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAA
+AAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFiAAAAaBAAAAAAAAAAAAAAaBDQA
+AABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv/gAAAQAAAAEAQ6G8IQAAAQBD
+obwhPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYAYQByAEYAaQBsAGUASQBuAGYA
+bwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAAALAEegMAAAEAUwB0AHIAaQBu
+AGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAAMAAwADQAYgAwAAAAGgABAAEAQwBvAG0A
+bQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkATgBhAG0AZQAAAAAAAAAAAHAAJAAB
+AEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQAXwAwADQAOQBhADEANQBiAGEA
+OAA0ADIANAA0ADcANwAyAGIANQBlADMAMABkADYAZAAyAGUAYgA1ADMAZgAxADMAAAA+AA8AAQBG
+AGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4AOAA2ADMANgAuADQAMQAyADgAMwAAAAAA
+cAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwAxAGEAMgA0ADIAYwAyADgANwBh
+ADEAOQA0AGUAMwA2AGIAYQBjADUAZQBiADYANwA5ADMANgAyAGEAYwA0ADQALgBkAGwAbAAAAEgA
+EgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAg
+ACAAMgAwADEAOQAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBkAGUAbQBhAHIAawBzAAAAAAAAAAAA
+eAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAAAFMAVABfADEAYQAyADQAMgBj
+ADIAOAA3AGEAMQA5ADQAZQAzADYAYgBhAGMANQBlAGIANgA3ADkAMwA2ADIAYQBjADQANAAuAGQA
+bABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABTAFQAXwAwADQAOQBhADEANQBi
+AGEAOAA0ADIANAA0ADcANwAyAGIANQBlADMAMABkADYAZAAyAGUAYgA1ADMAZgAxADMAAABCAA8A
+AQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADgANgAzADYALgA0ADEAMgA4
+ADMAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADgA
+NgAzADYALgA0ADEAMgA4ADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAABgAAAMAAAAjDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
+              <Breakpoint
+                Enabled="True"
+                File="ScriptMain.cs"
+                Line="101"
+                Column="13" />
+              <Breakpoint
+                Enabled="True"
+                File="ScriptMain.cs"
+                Line="101"
+                Column="13" />
+              <Breakpoint
+                Enabled="True"
+                File="ScriptMain.cs"
+                Line="101"
+                Column="13" />
+            </ScriptProject>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1382CACF-8FF1-4165-8A8A-2AC1AA29653F}"
+          DTS:From="Package\Foreach Loop Container\xlsx files"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\View Creation" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{95234730-D2C5-46C3-8600-7044D6724406}"
+          DTS:ObjectName="{95234730-D2C5-46C3-8600-7044D6724406}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::Filename" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{DAD2E640-9A0A-4074-B627-B94D9CC48694}"
+          DTS:ObjectName="{DAD2E640-9A0A-4074-B627-B94D9CC48694}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::Prefix" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{223907F1-3673-4892-A6AC-60B96AFA4512}"
+          DTS:ObjectName="{223907F1-3673-4892-A6AC-60B96AFA4512}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::File_Id" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{648718AC-1F54-40BF-91DE-CFD8BB760644}"
+          DTS:ObjectName="{648718AC-1F54-40BF-91DE-CFD8BB760644}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::IsAppend" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{86F86990-448B-411B-9008-97B69A0419C8}"
+          DTS:ObjectName="{86F86990-448B-411B-9008-97B69A0419C8}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::Table_Already_Existence" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Variables setting"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BF3872C3-5988-4D26-AF6B-BC7CAC900B1A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Variables setting"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+          SQLTask:SqlStatementSource="Select p_SourceFolder as SourceFolder,&#xA;&#x9;&#x9;p_ArchiveFolder as ArchiveFolder,&#xA;&#x9;&#x9;p_CurrentYear as [Year]&#xA;from&#xA;(&#xA;select Parameter_Name,Parameter_Value &#xA;from Parameters&#xA;)A&#xA;PIVOT(&#xA;    MAX(Parameter_Value) &#xA;    FOR Parameter_Name IN (&#xA;        p_SourceFolder,&#xA;&#x9;&#x9;p_ArchiveFolder,&#xA;&#x9;&#x9;p_CurrentYear)&#xA;) AS pivot_table;&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::P_SourceFolder" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::P_ArchiveFolder" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::CurrentYear" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6B935D26-BB80-4C44-B642-F8227D95EF6D}"
+      DTS:From="Package\Variables setting"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{385B93B2-53F8-4842-9807-49F0EFBFF331}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="302.933333333333,121" />
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\Foreach Loop Container\View Creation"
+          TopLeft="73.2142856072407,140.617647873902" />
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Foreach Loop Container\xlsx files"
+          TopLeft="89.0714285130403,31.2294125883637" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="146.942857060141,72.8294125883637">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67.7882352855383"
+              Start="0,0"
+              End="0,60.2882352855383">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.2882352855383" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="273.6,247.2"
+          Size="273.6,290.4"
+          Id="Package\Foreach Loop Container"
+          TopLeft="241.333333333333,200" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Variables setting"
+          TopLeft="297.304761880433,37" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="376.919047606883,78.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4"
+              Start="0,0"
+              End="0,34.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="378.133333333333,162.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.4"
+              Start="0,0"
+              End="0,29.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Data Flow Task\Recordset Destination"
+          TopLeft="475,201" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="486,84" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="563.5,126">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

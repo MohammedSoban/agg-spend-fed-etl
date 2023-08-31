@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LocalHost Fed_Rep_Solution"
+  DTS:DTSID="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::Password]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="UserName">@[$Project::UserName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=.;User ID=fedusr;Initial Catalog=Fed_Rep_Sol;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2qDUL5TjckWu/RUKI25iTwAAAAACAAAAAAAQZgAAAAEAACAAAAC3M7AbKwyEACb6HFizOZickJn7s8eLIysc0zI31xXUkgAAAAAOgAAAAAIAACAAAAD2GFidar7E0zlfB8pzOYJljEyuJRpzqoWv9vXISNZO84AAAAALa2ETH9dHtNXq5sMTLHYK089rWkWIVeW+RNelIzrFs+SwzmPm+qqsXSkm3fQt00FyN1aQjFON3ILZdu74Av+YDrr3IBQPqIvAlJSwaVMvb2E5bHjRLqVUEJDH88yfmS9OL/tl2Zrxzf/8mgXw1drmKOg3SK4ICXEqCsdCZHYG9EAAAADHcexdxfA0Jg6OLQgPc8XkNutURIum+eQ8MC8t2vDek9cnF+WVNQjsdpVhq62lGpEIGk0czRoMTxObjmCZgZeb</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

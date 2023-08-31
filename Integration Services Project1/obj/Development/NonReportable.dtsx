@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/8/2019 2:39:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="US-BCKND"
+  DTS:CreatorName="QORDATA\syed.najib"
+  DTS:DTSID="{252EAC50-84FC-4C6B-BEAF-E9C574874DFB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NonReportable"
+  DTS:PackageType="5"
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{5893DE81-99E9-43F7-8338-9254CBE77FF4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\All Commands except SPs"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{109AB6A6-25F7-4DA0-A014-A95BBDAE1F5E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="All Commands except SPs">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\All Commands except SPs\General"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D1E29E7E-F491-4A3C-A47A-0270F4C3F098}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="General"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="Declare @ID as nvarchar(max),&#xA;@NonreportableCommand  as nvarchar(max),&#xA;@Insert_SQL nvarchar(max),&#xA;@Audit_Start_SQL nvarchar(max),&#xA;@Audit_End_SQL nvarchar(max),&#xA;@Delete_SQL nvarchar(max),&#xA;@Year nvarchar(50),&#xA;@VersionID nvarchar(5);&#xA;&#xA;SET @Year = (Select Parameter_Value From Parameters where Parameter_Name = 'p_CurrentYear');&#xA;SET @VersionID = (Select VersionID from VersionYearMapping where year = @Year);&#xA;&#xA;&#x9;&#x9;DECLARE QDTemplateColumnTraversal CURSOR&#xA;&#x9;&#x9;&#x9;FOR SELECT ID , NonreportableCommand&#xA;&#x9;&#x9;&#x9;&#x9;FROM NonReportableDictionary&#xA;&#x9;&#x9;&#x9;&#x9;WHERE ISENABLE = 1&#xA;&#x9;&#x9;&#x9;&#x9;and datatype = 'G'&#xA;&#x9;&#x9;&#x9;&#x9;and versionID = @VersionID&#xA;&#x9;&#x9;&#x9;&#x9;and Nonreportablecommand not like '%sp[_]%';&#xA;&#xA;&#x9;&#x9;OPEN QDTemplateColumnTraversal;&#xA;&#x9;&#x9;FETCH NEXT FROM QDTemplateColumnTraversal INTO &#xA;&#x9;&#x9;&#x9;@ID, &#xA;&#x9;&#x9;&#x9;@NonreportableCommand;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;set @Audit_Start_SQL = 'Insert into [NonReportableAuditlogs] ( [Rule_ID],[Start_time],[End_time],[Error Description],[Status] ) values ('+@ID+',getdate(), NULL, NULL, 1)'&#xA;&#xA;&#x9;&#xA;&#x9;set @Insert_SQL='&#xA;&#x9;BEGIN TRY&#xA;&#x9;Insert into GeneralValidationNonReportable (NonreportableID, Year, TransactionID, LZRecordID) &#xA;&#x9;SELECT '+@ID+' as NonReportableID, Year,ID as TransactionID, LZRecordID   FROM QdGeneralTemplateValidation '+@NonreportableCommand+&#xA;&#x9;' and year = '+@Year+' END TRY  &#xA;&#xA;&#x9;BEGIN CATCH  &#xA;    Update [NonReportableAuditlogs] set [Error Description] = ERROR_MESSAGE(), status = 3 where ID = (Select max(ID) from NonReportableAuditlogs)&#xA;&#x9;END CATCH;  '&#xA;&#x9;&#xA;&#xA;&#x9;set @Audit_End_SQL = 'Update [NonReportableAuditlogs] set [End_time] = getdate(), Status = 2 where ID = (Select max(ID) from NonReportableAuditlogs where [Error Description] is  null)'&#xA;&#xA;Execute(@Audit_Start_SQL);&#xA;Execute(@Insert_SQL);&#xA;Execute(@Audit_End_SQL);&#xA;&#xA;FETCH NEXT FROM QDTemplateColumnTraversal INTO &#xA;&#x9;&#x9;&#x9;@ID, &#xA;&#x9;&#x9;&#x9;@NonreportableCommand;&#xA;END;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;CLOSE QDTemplateColumnTraversal;&#xA;&#x9;&#x9;&#x9;DEALLOCATE QDTemplateColumnTraversal;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\All Commands except SPs\Research"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b5fcbf56-1dc4-424b-a187-87ac74a1f85b}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Research"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="Declare @ID as nvarchar(max),&#xA;@NonreportableCommand  as nvarchar(max),&#xA;@Insert_SQL nvarchar(max),&#xA;@Audit_Start_SQL nvarchar(max),&#xA;@Audit_End_SQL nvarchar(max),&#xA;@Delete_SQL nvarchar(max),&#xA;@Year nvarchar(50),&#xA;@VersionID nvarchar(5);&#xA;&#xA;SET @Year = (Select Parameter_Value From Parameters where Parameter_Name = 'p_CurrentYear');&#xA;SET @VersionID = (Select VersionID from VersionYearMapping where year = @Year);&#xA;&#xA;&#xA;&#x9;&#x9;DECLARE QDTemplateColumnTraversal CURSOR&#xA;&#x9;&#x9;&#x9;FOR SELECT ID , NonreportableCommand&#xA;&#x9;&#x9;&#x9;&#x9;FROM NonReportableDictionary&#xA;&#x9;&#x9;&#x9;&#x9;WHERE ISENABLE = 1&#xA;&#x9;&#x9;&#x9;&#x9;and datatype = 'R'&#xA;&#x9;&#x9;&#x9;&#x9;and versionID = @VersionID&#xA;&#x9;&#x9;&#x9;&#x9;and Nonreportablecommand not like '%sp[_]%';&#xA;&#xA;&#x9;&#x9;OPEN QDTemplateColumnTraversal;&#xA;&#x9;&#x9;FETCH NEXT FROM QDTemplateColumnTraversal INTO &#xA;&#x9;&#x9;&#x9;@ID, &#xA;&#x9;&#x9;&#x9;@NonreportableCommand;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;set @Audit_Start_SQL = 'Insert into [NonReportableAuditlogs] ( [Rule_ID],[Start_time],[End_time],[Error Description],[Status] ) values ('+@ID+',getdate(), NULL, NULL, 1)';&#xA;&#xA;&#x9;&#xA;&#x9;set @Insert_SQL='&#xA;&#x9;BEGIN TRY&#xA;&#x9;Insert into ResearchValidationNonReportable (NonreportableID, Year, TransactionID, LZRecordID) &#xA;&#x9;SELECT '+@ID+' as NonReportableID, Year,ID as TransactionID, LZRecordID   FROM QdResearchTemplateValidation '+@NonreportableCommand+&#xA;&#x9;' and year = '+@Year+' END TRY  &#xA;&#xA;&#x9;BEGIN CATCH  &#xA;    Update [NonReportableAuditlogs] set [Error Description] = ERROR_MESSAGE(), status = 3 where ID = (Select max(ID) from NonReportableAuditlogs)&#xA;&#x9;END CATCH;  ';&#xA;&#xA;set @Audit_End_SQL = 'Update [NonReportableAuditlogs] set [End_time] = getdate(), Status = 2 where ID = (Select max(ID) from NonReportableAuditlogs where [Error Description] is  null)';&#xA;&#xA;Execute(@Audit_Start_SQL);&#xA;Execute(@Insert_SQL);&#xA;Execute(@Audit_End_SQL);&#xA;&#xA;FETCH NEXT FROM QDTemplateColumnTraversal INTO &#xA;&#x9;&#x9;&#x9;@ID, &#xA;&#x9;&#x9;&#x9;@NonreportableCommand;&#xA;END;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;CLOSE QDTemplateColumnTraversal;&#xA;&#x9;&#x9;&#x9;DEALLOCATE QDTemplateColumnTraversal;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\All Commands except SPs.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{EA505B5C-EAE1-4FBF-83C5-31A80A65E0BE}"
+          DTS:From="Package\All Commands except SPs\General"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\All Commands except SPs\Research"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\All Sps"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{FD49594C-5520-47B2-975F-A0B42ECCC1CD}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="All Sps">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\All Sps\Combined for General and Research"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ed01e664-1a6c-48b2-8ea3-5eb1ab06be5e}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Combined for General and Research"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="Declare @ID as nvarchar(max),&#xA;&#x9;&#x9;@NonreportableCommand as nvarchar(max),&#xA;&#x9;&#x9;@SQL as nvarchar(max),&#xA;&#x9;&#x9;@Audit_Start_SQL nvarchar(max),&#xA;&#x9;&#x9;@Audit_End_SQL nvarchar(max),&#xA;&#x9;&#x9;@Datatype as varchar(1),&#xA;&#x9;&#x9;@Year nvarchar(50),&#xA;&#x9;&#x9;@VersionID nvarchar(5);&#xA;&#xA;SET @Year = (Select Parameter_Value From Parameters where Parameter_Name = 'p_CurrentYear');&#xA;SET @VersionID = (Select VersionID from VersionYearMapping where year = @Year);&#xA;&#xA;DECLARE QDTemplateColumnTraversal_1 CURSOR&#xA;FOR SELECT ID , NonreportableCommand, Datatype&#xA;FROM NonReportableDictionary&#xA;WHERE ISENABLE = 1&#xA;and versionID = @VersionID&#xA;and Nonreportablecommand like '%sp[_]%'&#xA;&#xA;&#xA;OPEN QDTemplateColumnTraversal_1;&#xA;FETCH NEXT FROM QDTemplateColumnTraversal_1 INTO &#xA;@ID, &#xA;@NonreportableCommand,&#xA;@Datatype;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;BEGIN&#x9;&#x9;&#x9;&#xA;&#xA;set @Audit_Start_SQL = 'Insert into [NonReportableAuditlogs] ( [Rule_ID],[Start_time],[End_time],[Error Description],[Status] ) values ('+@ID+',getdate(), NULL, NULL, 1)'&#xA;&#xA;&#x9;&#xA;&#xA;Set @SQL = '&#xA;BEGIN TRY&#xA;EXECUTE '+@NonreportableCommand+&#xA;' END TRY  &#xA;&#xA;&#x9;BEGIN CATCH  &#xA;    Update [NonReportableAuditlogs] set [Error Description] = ERROR_MESSAGE(), status = 3 where ID = (Select max(ID) from NonReportableAuditlogs)&#xA;&#x9;END CATCH;  '&#xA;&#xA;set @Audit_End_SQL = 'Update [NonReportableAuditlogs] set [End_time] = getdate(), Status = 2 where ID = (Select max(ID) from NonReportableAuditlogs) and [Error Description] is  null'&#xA;&#xA;Execute(@Audit_Start_SQL);&#xA;Execute(@SQL);&#xA;Execute(@Audit_End_SQL);&#xA;&#xA;FETCH NEXT FROM QDTemplateColumnTraversal_1 INTO &#xA;&#x9;&#x9;&#x9;@ID, &#xA;&#x9;&#x9;&#x9;@NonreportableCommand,&#xA;&#x9;&#x9;&#x9;@Datatype;&#xA;END;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;CLOSE QDTemplateColumnTraversal_1;&#xA;&#x9;&#x9;&#x9;DEALLOCATE QDTemplateColumnTraversal_1;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{71B84D6B-B590-4696-8AE8-1C1E676AE7D5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\UPD Non Reporting Columns General Validation"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B063BC02-E4E1-4C32-93DA-4C9513F5672E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="UPD Non Reporting Columns General Validation"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="----------------- UPDATE NONREPORTABLEREASONSCOUNT ------------------&#xA;Declare @year as varchar(50) = (Select Parameter_Value From Parameters where Parameter_Name = 'p_CurrentYear')&#xA;update A&#xA;set A.NonReportableReasonsCount = B.row_count --accomodate isnonreportable flag in this statement&#xA;from QdGeneralTemplateValidation A&#xA;inner join &#xA;(&#xA;select TransactionID, count(*)  as row_count&#xA;from GeneralValidationNonReportable where year = @year&#xA;group by TransactionID&#xA;)B&#xA;on a.ID = b.TransactionID&#xA;where a.year = @year&#xA;&#xA;&#xA;----------------- UPDATE ISNONREPORTABLE  ------------------&#xA;&#xA;update A&#xA;set A.ISNONREPORTABLE = 1&#xA;from QdGeneralTemplateValidation A&#xA;inner join  &#xA;GeneralValidationNonReportable B&#xA;on a.ID = b.TransactionID&#xA;where a.Year = @year and b.Year = @year&#xA;&#xA;&#xA;update QdGeneralTemplateValidation&#xA;set ISNONREPORTABLE = 0&#xA;where ISNONREPORTABLE is NULL and year = @year&#xA;&#xA;----------------- UPDATE NONREPORTABLEPRIMARYCODE  -------------&#xA;;with nonrep as (&#xA;SELECT A.TransactionID,N.NonReportableDescription as NONREPORTABLEREASON FROM&#xA;(SELECT N.TRANSACTIONID, MIN(PRIORITY) AS PRIORITY_MAX&#xA;FROM GENERALVALIDATIONNONREPORTABLE N &#xA;JOIN NONREPORTABLEDICTIONARY D &#xA;ON N.NONREPORTABLEID = D.ID&#xA;where D.Datatype = 'G' and N.year = @year&#xA;GROUP BY N.TRANSACTIONID) A&#xA;INNER JOIN &#xA;(SELECT N.TRANSACTIONID, PRIORITY ,D.NonReportableDescription&#xA;FROM GENERALVALIDATIONNONREPORTABLE N &#xA;JOIN NONREPORTABLEDICTIONARY D &#xA;ON N.NONREPORTABLEID = D.ID&#xA;and D.Datatype = 'G' and year = @year&#xA;) N &#xA;ON A.PRIORITY_MAX = N.PRIORITY&#xA;AND A.TRANSACTIONID = N.TRANSACTIONID&#xA;)&#xA;update a&#xA;set a.NonReportablePrimaryCode = c.id from QdGeneralTemplateValidation a join nonrep b on a.id = b.TransactionID&#xA;join NonReportableDictionary c on c.NonReportableDescription = b.NONREPORTABLEREASON&#xA;where c.Datatype = 'G' and c.VersionID = (select versionid from VersionYearMapping where year = @year)&#xA;&#xA;&#xA;--update A&#xA;--Set&#x9;NONREPORTABLEPRIMARYCODE = b.ID--convert max to min and use Data type as 'G' and check if we need to use top statementornot&#xA;--from QdGeneralTemplateValidation A&#xA;--inner join&#xA;--(&#xA;--SELECT TRANSACTIONID,B.ID, Min(PRIORITY) as [Priority]&#xA;--FROM &#xA;--GeneralValidationNonReportable A&#xA;--INNER JOIN NonReportableDictionary B&#xA;--ON A.NonReportableID = B.ID &#xA;--where a.Year = @year&#xA;--group by TransactionID, b.ID) B&#xA;--on a.ID = b.TransactionID&#xA;--where a.Year = @year&#xA;&#xA;&#xA;----------------- UPDATE NONREPORTABLEPRIMARYREASON  -------------&#xA;&#xA;update A&#xA;Set&#x9;NONREPORTABLEPRIMARYREASON = NonReportableReason&#xA;from QdGeneralTemplateValidation A&#xA;INNER JOIN NonReportableDictionary B&#xA;ON A.NONREPORTABLEPRIMARYCODE = B.ID&#xA;where a.Year = @year&#xA;&#xA;&#xA;----------------- UPDATE NONREPORTABLEREASONS -------------&#xA;IF OBJECT_ID('tempdb..#temp1') IS NOT NULL&#xA;    DROP TABLE #temp1&#xA;&#xA;select &#xA;TransactionID,&#xA;NonReportableDescription as NonReportableReason &#xA;into #temp1  &#xA;from GeneralValidationNonReportable t1&#xA;inner join NonReportableDictionary t2&#xA;on t1.NonReportableID = t2.ID&#xA;where t1.Year = @year&#xA;&#xA;&#xA;update A&#xA;set NONREPORTABLEREASONS = B.abc&#xA;FROM QdGeneralTemplateValidation A&#xA;INNER JOIN&#xA;(&#xA;SELECT TransactionID, abc = STUFF&#xA;(&#xA;    (&#xA;        SELECT ', ' + NonReportableReason&#xA;        FROM #temp1 As T2&#xA;        -- You only want to combine rows for a single ID here:&#xA;        WHERE T2.TransactionID = T1.TransactionID&#xA;        ORDER BY NonReportableReason&#xA;        FOR XML PATH (''), TYPE&#xA;    ).value('.', 'varchar(max)')&#xA;, 1, 1, '')&#xA;FROM #temp1 As T1&#xA;GROUP BY TransactionID&#xA;)B&#xA;ON A.ID = B.TRANSACTIONID&#xA;where a.Year = @year&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\UPD Non Reporting Columns Research Validation"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{76A3D65C-2105-49D5-953D-57295137DF69}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="UPD Non Reporting Columns Research Validation"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="----------------- UPDATE NONREPORTABLEREASONSCOUNT ------------------&#xA;Declare @year as varchar(50) = (Select Parameter_Value From Parameters where Parameter_Name = 'p_CurrentYear')&#xA;&#xA;update A&#xA;set A.NonReportableReasonsCount = B.row_count&#xA;from QdResearchTemplateValidation A&#xA;inner join &#xA;(&#xA;select TransactionID, count(*)  as row_count&#xA;from ResearchValidationNonReportable where year = @year&#xA;group by TransactionID&#xA;)B&#xA;on a.ID = b.TransactionID&#xA;where a.year = @year&#xA;----------------- UPDATE ISNONREPORTABLE  ------------------&#xA;&#xA;update A&#xA;set A.ISNONREPORTABLE = 1&#xA;from QdResearchTemplateValidation A&#xA;inner join  &#xA;ResearchValidationNonReportable B&#xA;on a.ID = b.TransactionID&#xA;where a.Year = @year and b.Year = @year&#xA;&#xA;&#xA;update QdResearchTemplateValidation&#xA;set ISNONREPORTABLE = 0&#xA;where ISNONREPORTABLE is NULL and year = @year&#xA;&#xA;----------------- UPDATE NONREPORTABLEPRIMARYCODE  -------------&#xA;;with nonrep as (&#xA;SELECT A.TransactionID,N.NonReportableDescription as NONREPORTABLEREASON FROM&#xA;(SELECT N.TRANSACTIONID, MIN(PRIORITY) AS PRIORITY_MAX&#xA;FROM ResearchValidationNonReportable N &#xA;JOIN NONREPORTABLEDICTIONARY D &#xA;ON N.NONREPORTABLEID = D.ID&#xA;where D.Datatype = 'R' and year = @year&#xA;GROUP BY N.TRANSACTIONID) A&#xA;INNER JOIN &#xA;(SELECT N.TRANSACTIONID, PRIORITY ,D.NonReportableDescription&#xA;FROM ResearchValidationNonReportable N &#xA;JOIN NONREPORTABLEDICTIONARY D &#xA;ON N.NONREPORTABLEID = D.ID&#xA;and D.Datatype = 'R' and year = @year&#xA;) N &#xA;ON A.PRIORITY_MAX = N.PRIORITY&#xA;AND A.TRANSACTIONID = N.TRANSACTIONID&#xA;)&#xA;update a&#xA;set a.NonReportablePrimaryCode = c.id from QdResearchTemplateValidation a join nonrep b on a.id = b.TransactionID&#xA;join NonReportableDictionary c on c.NonReportableDescription = b.NONREPORTABLEREASON&#xA;where c.Datatype = 'R'  and c.VersionID = (select versionid from VersionYearMapping where year = @year)&#xA;--update A&#xA;--Set&#x9;NONREPORTABLEPRIMARYCODE = b.ID&#xA;--from QdResearchTemplateValidation A&#xA;--inner join&#xA;--(&#xA;--SELECT TRANSACTIONID,b.ID, Min(PRIORITY) as [Priority]&#xA;--FROM &#xA;--ResearchValidationNonReportable A&#xA;--INNER JOIN NonReportableDictionary B&#xA;--ON A.NonReportableID = B.ID&#xA;--where a.Year = @year&#xA;--group by TransactionID,b.ID) B&#xA;--on a.ID = b.TransactionID&#xA;--where a.Year = @year&#xA;&#xA;&#xA;----------------- UPDATE NONREPORTABLEPRIMARYREASON  -------------&#xA;&#xA;update A&#xA;Set&#x9;NONREPORTABLEPRIMARYREASON = NonReportableReason&#xA;from QdResearchTemplateValidation A&#xA;INNER JOIN NonReportableDictionary B&#xA;ON A.NONREPORTABLEPRIMARYCODE = B.ID&#xA;where a.Year = @year&#xA;&#xA;&#xA;----------------- UPDATE NONREPORTABLEREASONS -------------&#xA;IF OBJECT_ID('tempdb..#temp1') IS NOT NULL&#xA;    DROP TABLE #temp1&#xA;&#xA;select &#xA;TransactionID,&#xA;NonReportableDescription as NonReportableReason &#xA;into #temp1  &#xA;from ResearchValidationNonReportable t1&#xA;inner join NonReportableDictionary t2&#xA;on t1.NonReportableID = t2.ID&#xA;where t1.Year = @year&#xA;&#xA;&#xA;update A&#xA;set NONREPORTABLEREASONS = B.abc&#xA;FROM QdResearchTemplateValidation A&#xA;INNER JOIN&#xA;(&#xA;SELECT TransactionID, abc = STUFF&#xA;(&#xA;    (&#xA;        SELECT ', ' + NonReportableReason&#xA;        FROM #temp1 As T2&#xA;        -- You only want to combine rows for a single ID here:&#xA;        WHERE T2.TransactionID = T1.TransactionID&#xA;        ORDER BY NonReportableReason&#xA;        FOR XML PATH (''), TYPE&#xA;    ).value('.', 'varchar(max)')&#xA;, 1, 1, '')&#xA;FROM #temp1 As T1&#xA;GROUP BY TransactionID&#xA;)B&#xA;ON A.ID = B.TRANSACTIONID&#xA;where a.Year = @year&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;update A&#xA;set A.NonReportableReasonsCount = B.row_count --accomodate isnonreportable flag in this statement&#xA;from QdGeneralTemplateValidation A&#xA;inner join &#xA;(&#xA;select TransactionID, count(*)  as row_count&#xA;from GeneralValidationNonReportable where year = @year&#xA;group by TransactionID&#xA;)B&#xA;on a.ID = b.TransactionID&#xA;where A.Year = @year" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{27C250EB-727C-4692-92A2-CC3045FC3A15}"
+          DTS:From="Package\Sequence Container\UPD Non Reporting Columns General Validation"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\UPD Non Reporting Columns Research Validation" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncation"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E3F30AC4-78CC-40C5-BD6C-412A5B019346}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncation"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+          SQLTask:SqlStatementSource="declare @Year as int = (select parameter_value  from parameters where parameter_name = 'p_CurrentYear')&#xA;&#xA;&#xA;&#xA;&#xA;Delete from  GeneralValidationNonReportable &#xA;where year = @Year&#xA;&#xA;Delete from  ResearchValidationNonReportable &#xA;where year = @Year&#xA;&#xA;&#xA;&#xA;Update QdGeneralTemplateValidation&#xA;&#xA;SET IsNonReportable = NULL&#xA;&#xA;,NonReportablePrimaryCode = NULL&#xA;,NonReportablePrimaryReason = NULL&#xA;,NonReportableReasons  = NULL&#xA;,NonReportableReasonsCount = NULL&#xA;&#xA;where year = @Year&#xA;&#xA;&#xA;&#xA;Update QdResearchTemplateValidation&#xA;&#xA;SET IsNonReportable = NULL&#xA;&#xA;,NonReportablePrimaryCode = NULL&#xA;,NonReportablePrimaryReason = NULL&#xA;,NonReportableReasons  = NULL&#xA;,NonReportableReasonsCount = NULL&#xA;&#xA;where year = @Year" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2A2ECED2-75EF-433A-BD9B-AC31C6EB8CB2}"
+      DTS:From="Package\All Commands except SPs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\All Sps" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{224856F6-C7D1-4552-BA58-8FCA54DC6EBD}"
+      DTS:From="Package\Truncation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\All Commands except SPs" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1E0B8E02-D7FC-46BE-BAAD-205B15CE7489}"
+      DTS:From="Package\All Sps"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sequence Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="115,42"
+          Id="Package\All Commands except SPs\General"
+          TopLeft="20,21" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\All Commands except SPs\Research"
+          TopLeft="43,99" />
+        <EdgeLayout
+          Id="Package\All Commands except SPs.PrecedenceConstraints[Constraint]"
+          TopLeft="77.5,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.5,36"
+              Start="0,0"
+              End="26.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="22.5,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,18"
+                    Point2="26.5,18"
+                    Point3="26.5,22" />
+                  <mssgle:LineSegment
+                    End="26.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-12.054453125,23,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="237,196"
+          Size="237,239"
+          Id="Package\All Commands except SPs"
+          TopLeft="371,63.6666666666667" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\All Sps\Combined for General and Research"
+          TopLeft="2.5,27.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="260,189"
+          Size="260,232"
+          Id="Package\All Sps"
+          TopLeft="683,63.6666666666667" />
+        <NodeLayout
+          Size="303,42"
+          Id="Package\Sequence Container\UPD Non Reporting Columns General Validation"
+          TopLeft="27,36.5" />
+        <NodeLayout
+          Size="309,42"
+          Id="Package\Sequence Container\UPD Non Reporting Columns Research Validation"
+          TopLeft="28,82" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="27,57.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1,45.5"
+              Start="0,0"
+              End="-6.5,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,41.5"
+                    Point2="-22.5,45.5"
+                    Point3="-18.5,45.5" />
+                  <mssgle:LineSegment
+                    End="-6.5,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="342,179"
+          Size="342,222"
+          Id="Package\Sequence Container"
+          TopLeft="1060,63.6666666666667" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Truncation"
+          TopLeft="77,157" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="608,181.416666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75,0"
+              Start="0,0"
+              End="67.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="67.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="272,180.583333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99,0"
+              Start="0,0"
+              End="91.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="91.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="943,177.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="117,0"
+              Start="0,0"
+              End="109.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="109.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Created by: Syed Najib Ali J.&#xA;Created On: 2019/11/13&#xA;&#xA;Purpose: To classify reportable &amp; non-reportable transactions."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="355,88"
+          Id="bfa02421-8be9-4eac-bb5d-acaf60624978"
+          TopLeft="165,358" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

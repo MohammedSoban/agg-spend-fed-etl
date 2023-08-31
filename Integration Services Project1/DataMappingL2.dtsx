@@ -1,0 +1,582 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/15/2019 12:58:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="US-BCKND"
+  DTS:CreatorName="QORDATA\syed.najib"
+  DTS:DTSID="{A1A4E176-523E-404D-ADA1-145CAEF20BC7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DataMappingL2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="150"
+  DTS:VersionGUID="{3D963517-ADBA-4200-B45F-12298F382FFA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{62F5EB3D-FA9E-4F39-B5FF-05FF85EF3489}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CTC">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7F245855-9A43-4ABB-8808-A1EB99F21328}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Mapping">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3B38F6CE-5A9D-4176-AF45-78C226E887A6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceData">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Audit_General"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3A54CD32-6218-422A-A3D9-34D0B3891A39}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Audit_General"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+          SQLTask:SqlStatementSource=" Insert into ValidationAuditLogs([DataType], StartTime, EndTime, ProcessStatus, ErrorDescription, ColumnInProgress, RuleLevel)&#xA; select 'G', GETDATE(), NULL, 0, NULL, NULL, 'L2'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Audt_Research"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C4B84504-ACF0-4C6B-937B-B8C92B3FE489}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Audt_Research"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+          SQLTask:SqlStatementSource=" Insert into ValidationAuditLogs([DataType], StartTime, EndTime, ProcessStatus, ErrorDescription, ColumnInProgress, RuleLevel)&#xA; select 'R', GETDATE(), NULL, 0, NULL, NULL, 'L2'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\General"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4E4A2850-038D-4C97-A6C4-BAAF8A875543}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="General">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\General\Product Mapping"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CF77E7D1-09DC-4758-B5D7-D9FFACE6738A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Product Mapping"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '3',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs);&#xA;&#xA;DECLARE @YEAR AS NVARCHAR(255)=(SELECT parameter_value &#xA;  FROM   parameters &#xA;  WHERE  parameter_name = 'p_CurrentYear'),&#xA;  @SQL_NOP as nvarchar(max);&#xA;&#xA;DECLARE @VersionID&#x9;&#x9;&#x9;NVARCHAR(MAX) = (Select versionid from VersionYearMapping where year = @YEAR);&#xA;DECLARE @productName NVARCHAR(max);&#xA;&#xA;DECLARE cursor_product CURSOR FOR &#xA;  select A.productName from &#xA;  (select distinct PRODUCT_DISCUSSED_1 as productName  from QdGeneralTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_2 as productName  from QdGeneralTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_3 as productName  from QdGeneralTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_4 as productName  from QdGeneralTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_5 as productName  from QdGeneralTemplate where year = @year) A&#xA;left join productmapping B &#xA;on A.productName=B.[Source Product Name] and  b.year = @year where B.[Source Product Name] is null and a.productName is not null and a.productName &lt;&gt; '';&#xA;&#xA;OPEN cursor_product; &#xA;&#xA;FETCH next FROM cursor_product INTO @productName; &#xA;&#xA;WHILE @@FETCH_STATUS = 0 &#xA;  BEGIN&#xA;  --set @VersionColID=(select distinct VersionColId from VersionTemplate where datatype = 'G' and ColumnName = @Column and RIGHT(VersionID,4) = (select max(RIGHT(versionID,4)) from VersionTemplate));&#xA;&#x9;SET @SQL_NOP =&#xA;&#x9;'insert into productmapping&#xA;&#x9;(Year,[Source Product Name],[Is Reportable],[Covered/Noncovered],[Product Type],[Therapeutic Area],[Mapped Product Name],[Mapped NDC],[Primary Device Identifier])'&#xA;&#x9;+'select '+ @YEAR+','''+@productName+''' as [Source Product Name],Null as [Is Reportable], Null as [Covered/Noncovered],&#xA;&#x9;Null as [Product Type], Null as [Therapeutic Area], Null as [Mapped Product Name], Null as [Mapped NDC], Null as [Primary Device Identifier]  ';&#xA;&#xA;&#x9;execute(@SQL_NOP);&#xA;&#xA;&#x9;--Update ValidationAuditLogs&#xA;&#x9;--Set EndTime = getdate(),&#xA;&#x9;--ProcessStatus = '3',&#xA;&#x9;--ColumnInProgress = @VersionColID&#xA;&#x9;--where ID = (Select max(ID) from ValidationAuditLogs);&#xA;&#xA;&#x9;FETCH next FROM cursor_product INTO @productName; &#xA;  END;&#xA;CLOSE cursor_product; &#xA;&#xA;DEALLOCATE cursor_product; &#xA;&#xA;--------------------UPDATE VALUES-----------------------------&#xA;update a&#xA;set &#xA;--A.RELATED_PRODUCT_INDICATOR = B.[Is Reportable],&#xA;A.COVERED_OR_NONCOVERED_INDICATOR_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_1) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdGeneralTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_1 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_2) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdGeneralTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_2 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_3) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdGeneralTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_3 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_4) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdGeneralTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_4 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_5) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdGeneralTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_5 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;--------------------------------------UPDATING VALIDATION ERROR---------------------------------&#xA;DECLARE &#xA;@Product&#x9;&#x9;&#x9;NVARCHAR(MAX), &#xA;@ColumnName&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX),&#xA;@VersionColumnID&#x9;&#x9;NVARCHAR(MAX),&#xA;@SQL&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX),&#xA;@ID&#x9;&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX) = (Select ID from mappinglist where datatype='G' and MappingDescription = 'Product' and versionid = @VersionID);&#xA;&#xA;&#xA;DECLARE cursor_product2 CURSOR FOR &#xA;SELECT A.PRODUCT_DISCUSSED ,A.ColumnName&#x9;&#xA;FROM (&#xA;SELECT PRODUCT_DISCUSSED_1 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_1' as ColumnName&#x9; FROM QDGENERALTEMPLATEVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_2 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_2' as ColumnName&#x9; FROM QDGENERALTEMPLATEVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_3 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_3' as ColumnName&#x9; FROM QDGENERALTEMPLATEVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_4 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_4' as ColumnName&#x9; FROM QDGENERALTEMPLATEVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_5 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_5' as ColumnName&#x9; FROM QDGENERALTEMPLATEVALIDATION&#xA;)A&#xA;WHERE A.PRODUCT_DISCUSSED NOT IN &#xA;(SELECT DISTINCT [Mapped Product Name] FROM productmapping where year = @year and [Mapped Product Name] is not null)&#xA;AND A.PRODUCT_DISCUSSED &lt;&gt; '' AND A.PRODUCT_DISCUSSED IS NOT NULL;&#xA;&#xA;OPEN cursor_product2;&#xA; &#xA;FETCH NEXT FROM cursor_product2 INTO &#xA;    @Product, &#xA;    @ColumnName;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#xA;&#xA;&#x9;set @VersionColumnID=(select distinct VersionColId from VersionTemplate where datatype = 'G' and ColumnName = @ColumnName and versionid = @VersionID);&#xA;&#xA;&#x9;Set @SQL = ('Insert into [GeneralValidationErrors](Year, RuleID,VersionColId, TransactionID,LZRecordID, InsertedDate, InsertedBy, UpdatedDate, UpdatedBy, [Level]) &#xA;&#x9;select Year,'+@ID+' as RuleID,'''+@VersionColumnId+''' as VersionColId, ID as TransactionID, LZRecordID,getdate() as InsertedDate, SYSTEM_USER as InsertedBy,getdate() as UpdatedDate, SYSTEM_USER as UpdatedBy ,''L2'' as [Level]&#xA;&#x9;from QdGeneralTemplateValidation &#xA;&#x9;where year = '+@YEAR+' and '+@ColumnName+' = '''+@Product+'''');&#xA;&#xA;&#x9;execute(@SQL);&#xA;&#xA;&#x9;Update ValidationAuditLogs&#xA;&#x9;Set EndTime = getdate(),&#xA;&#x9;ProcessStatus = '3',&#xA;&#x9;ColumnInProgress = @VersionColumnID&#xA;&#x9;where ID = (Select max(ID) from ValidationAuditLogs);&#xA;&#xA;&#xA;&#x9;FETCH NEXT FROM cursor_product2 INTO @Product, &#xA;&#x9;&#x9;@ColumnName;&#xA;&#x9;END;&#xA; &#xA;CLOSE cursor_product2;&#xA; &#xA;DEALLOCATE cursor_product2;&#xA;&#xA;update QdGeneralTemplateValidation&#xA;set RELATED_PRODUCT_INDICATOR = case when isnull(PRODUCT_DISCUSSED_1,'') &lt;&gt; '' or  isnull(PRODUCT_DISCUSSED_2,'') &lt;&gt; '' or isnull(PRODUCT_DISCUSSED_3,'') &lt;&gt; ''&#xA;or isnull(PRODUCT_DISCUSSED_4,'') &lt;&gt; '' or isnull(PRODUCT_DISCUSSED_5,'') &lt;&gt; '' then 'Y' else 'N' end&#xA;where year = @year&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\General\SourceToDictionaryMapping"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D016350F-EAC7-44BD-853D-8945A716A323}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SourceToDictionaryMapping"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="DECLARE @YEAR AS NVARCHAR(255)=(SELECT parameter_value &#xA;  FROM   parameters &#xA;  WHERE  parameter_name = 'p_CurrentYear') &#xA;DECLARE @VERSIONID AS NVARCHAR(50) = (select VersionID From VersionYearMapping where year = @YEAR)&#xA;DECLARE @SQL_NOP AS NVARCHAR(max) &#xA;DECLARE @Version AS NVARCHAR(max) &#xA;DECLARE @designationMappingListID as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation' and datatype = 'G' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID2 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 2' and datatype = 'G' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID3 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 3' and datatype = 'G' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID4 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 4' and datatype = 'G' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID5 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 5' and datatype = 'G' and versionid = @VERSIONID)&#xA;&#xA;------------------- SDM ------------------------- &#xA;&#xA;DECLARE @ColumnToCheck_SMD NVARCHAR(max), &#xA;        @ID                NVARCHAR(max) &#xA;DECLARE cursor_product CURSOR FOR &#xA;  SELECT A.ID, &#xA;         columntocheck,&#xA;&#x9;&#x9; B.VersionColId &#xA;  FROM   [mappinglist] A&#xA;   Left join VersionTemplate B&#xA;  on A.ColumnToCheck = B.ColumnName and A.VersionID = B.VersionID&#xA;  WHERE  A.DataType = 'G' and A.versionid = @VERSIONID&#xA;  and b.DataType = 'G'&#xA;&#xA;OPEN cursor_product; &#xA;&#xA;FETCH next FROM cursor_product INTO @ID, @ColumnToCheck_SMD, @Version; &#xA;&#xA;WHILE @@FETCH_STATUS = 0 &#xA;  BEGIN &#xA;      SET @SQL_NOP = &#xA;      'insert into [SourceToDictionaryMapping](Year,MappListID, SourceData) ' &#xA;      + 'select distinct ' + @YEAR + ',' + @ID + ',' &#xA;      + @ColumnToCheck_SMD &#xA;      + ' from QdGeneralTemplateValidation ' &#xA;      + &#xA;'where year='+@YEAR&#xA;               + ' and ' + @ColumnToCheck_SMD &#xA;               + ' is not null and ' + @ColumnToCheck_SMD &#xA;               + ' &lt;&gt; ''''' + ' and '+@ColumnToCheck_SMD+'_code is null'&#xA;&#x9;&#x9;&#x9;   + ' and (case when '+@ColumnToCheck_SMD  +' like ''%kind item%'' then  STUFF('+@ColumnToCheck_SMD+&#xA;',3,1,''-'')  else '+@ColumnToCheck_SMD+' end) not in (Select distinct case when SourceData like ''%kind item%'' then STUFF(SourceData,3,1,''-'') else SourceData end from SourceToDictionaryMapping &#xA;where mapplistid = '+@ID+' and year = '+@year+')' &#xA;&#xA;execute(@SQL_NOP) &#xA;&#xA;------------------Update Logs -------------------&#xA;&#xA;Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '1A',&#xA;ColumnInProgress = @Version&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;&#xA;FETCH next FROM cursor_product INTO @ID, @ColumnToCheck_SMD,@Version; &#xA;END; &#xA;&#xA;CLOSE cursor_product; &#xA;&#xA;DEALLOCATE cursor_product; &#xA;&#xA;------------------- Remove source designations from mapping to only keep NPPES verified designations in mapping------------&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdGeneralTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID and (a.MappingCodeID is null  and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdGeneralTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_2&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID2 and (a.MappingCodeID is null  and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID2&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdGeneralTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_3&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID3 and (a.MappingCodeID is null  and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID3&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdGeneralTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_4&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID4 and (a.MappingCodeID is null  and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID4&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdGeneralTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_5&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID5 and (a.MappingCodeID is null  and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID5&#xA;&#xA;------------------- Updating SourceToDictionaryMapping ------------------------- &#xA;UPDATE a &#xA;SET    a.mappingcodeid = b.code &#xA;FROM   sourcetodictionarymapping a &#xA;       INNER JOIN mappingdictionary b &#xA;               ON a.mapplistid = b.mappinglistid &#xA;                  AND a.sourcedata = b.[description] &#xA;       INNER JOIN mappinglist c &#xA;               ON a.mapplistid = c.id &#xA;                  AND c.datatype = 'G' &#xA;WHERE  a.mappingcodeid IS NULL and a.Year = @YEAR&#xA;&#xA;&#xA;UPDATE a   &#xA;SET    a.mappingcodeid = b.code &#xA;&#xA;FROM   sourcetodictionarymapping a &#xA;    &#xA;   INNER JOIN mappingdictionary_extended b   &#xA;          &#xA;     ON a.mapplistid = b.mappinglistid   &#xA;              &#xA;    AND a.sourcedata = b.[description]   &#xA;    &#xA;   INNER JOIN mappinglist d   &#xA;         &#xA;      ON a.mapplistid = d.id   &#xA;       &#xA;           AND d.datatype = 'G'  &#xA; &#xA;WHERE  a.mappingcodeid IS NULL  &#xA;&#xA;and isnull(a.IsReportable,'') &lt;&gt; '1'&#xA;&#xA;&#xA;and a.Year = @YEAR&#xA;&#xA;&#xA;------------------Update Logs -------------------&#xA;&#xA;Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '1A',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;------------------- Deleting duplicates from SMD ------------------&#xA;&#xA;&#xA;select distinct  year, mapplistid, sourcedata,mappingcodeid, suggestedid, isreportable &#xA;into #SourceToDictionaryMapping&#xA;from SourceToDictionaryMapping&#xA;&#xA;Truncate table SourceToDictionaryMapping&#xA;&#xA;insert into SourceToDictionaryMapping&#xA;select * from #SourceToDictionaryMapping&#xA;--------------------Designation Mapping Update from MDM-----------------&#xA;&#xA;update a&#xA;set a.MappingCodeID = b.CMSMappingCode,&#xA;a.IsReportable = case when b.ReportingStatus = 0 then 1 else null end&#xA;From SourceToDictionaryMapping a join FederalReportingMDM..PrimaryTypeMDM_V2021 b &#xA;on a.SourceData = b.PrimaryType &#xA;where MappListID in (@designationMappingListID,@designationMappingListID2,@designationMappingListID3,@designationMappingListID4,@designationMappingListID5) &#xA;and a.year = @year&#xA;and  b.ReportingStatus &lt;&gt;2 and a.MappingCodeID is null  and a.IsReportable is null&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\General\Update Counts"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8A80514F-572C-4E58-8FFD-5AC0AB0CB6FB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Counts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="&#xA;Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '4',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;------------------------------- Update Error Count -----------------------&#xA;&#xA;DECLARE @YEAR&#x9;&#x9;&#x9;NVARCHAR(255)=(SELECT PARAMETER_VALUE FROM PARAMETERS WHERE PARAMETER_NAME = 'P_CURRENTYEAR')&#xA;&#xA;&#xA;update QdGeneralTemplateValidation&#xA;set NoOfFailedRulesL2 = NULL&#xA;where year = @Year&#xA;&#xA;Update A&#xA;set A.NoOfFailedRulesL2 = B.[count]&#xA;from QdGeneralTemplateValidation A&#xA;inner join &#xA;(select TransactionID, count(*) as [count]&#xA;from GeneralValidationErrors&#xA;where [Level] = 'L2'&#xA;and year = @YEAR&#xA;group by TransactionID&#xA;)B&#xA;on a.ID = b.transactionID&#xA;&#xA;&#xA;-----------------------------------&#xA;&#xA;&#xA;Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '4',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\General\Validation Errors"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AB56506A-23A5-417A-9160-BDAE46E18B9C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Validation Errors"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="DECLARE @YEAR AS NVARCHAR(255)=(SELECT parameter_value &#xA;  FROM   parameters &#xA;  WHERE  parameter_name = 'p_CurrentYear') &#xA;DECLARE @SQL_NOP AS NVARCHAR(max) &#xA;&#xA;DECLARE @VERSIONID AS NVARCHAR(MAX) = (SELECT VERSIONID FROM VersionYearMapping WHERE YEAR = @YEAR)&#xA;------------------------------- Validation Errors ----------------------- &#xA;DELETE FROM generalvalidationerrors &#xA;WHERE  [level] = 'L2' and year = @year&#xA;&#xA;&#xA;Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '2A',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;DECLARE @SourceData    NVARCHAR(max), &#xA;        @ColumnToCheck NVARCHAR(max), &#xA;        @VersionColID  NVARCHAR(max), &#xA;&#x9;&#x9;@ID&#x9;&#x9;&#x9;   NVARCHAR(MAX),&#xA;        @SQL           NVARCHAR(max) &#xA;DECLARE cursor_product CURSOR FOR &#xA;  SELECT sourcedata, &#xA;         columntocheck ,&#xA;&#x9;&#x9; b.ID&#xA;  FROM   sourcetodictionarymapping a &#xA;         INNER JOIN mappinglist b &#xA;                 ON a.mapplistid = b.id &#xA;  WHERE  mappingcodeid IS NULL &#xA;         AND datatype = 'G' and a.Year = @YEAR; &#xA;&#xA;OPEN cursor_product; &#xA;&#xA;FETCH next FROM cursor_product INTO @SourceData, @ColumnToCheck,@ID; &#xA;&#xA;WHILE @@FETCH_STATUS = 0 &#xA;  BEGIN &#xA;      SET @VersionColID=(SELECT DISTINCT versioncolid &#xA;                         FROM   versiontemplate &#xA;                         WHERE  datatype = 'G' &#xA;                                AND columnname = @ColumnToCheck &#xA;                                AND versionid = @VERSIONID&#xA;                        ); &#xA;&#xA;      SET @SQL = ( 'Insert into [GeneralValidationErrors](Year, RuleID,VersionColId, TransactionID,LZRecordID, InsertedDate, InsertedBy, UpdatedDate, UpdatedBy, [Level])  select Year,'+@ID+' as RuleID,''' &#xA;                   + @VersionColId + ''' as VersionColId, ID as TransactionID, LZRecordID,getdate() as InsertedDate, SYSTEM_USER as InsertedBy,getdate() as UpdatedDate, SYSTEM_USER as UpdatedBy ,''L2'' as [Level] from QdGeneralTemplateValidation  where year = ' + @YEAR + ' and ' &#xA;                   + @ColumnToCheck + ' = ''' + @SourceData + '''' ); &#xA;      EXECUTE(@SQL); &#xA;&#xA;&#x9;  Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '2A',&#xA;ColumnInProgress = @VersionColID&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;      FETCH next FROM cursor_product INTO @SourceData, @ColumnToCheck,@ID; &#xA;  END; &#xA;&#xA;CLOSE cursor_product; &#xA;&#xA;DEALLOCATE cursor_product; &#xA;&#xA;------------------------------- Update Validations_L2 ----------------------- &#xA;&#xA;-- Addition of CodeForCMSColumns -- &#xA;--DECLARE @ColumnForCMSCode NVARCHAR(max), &#xA;--        @SQL_L2           NVARCHAR(max) &#xA;--DECLARE cursor_product CURSOR FOR &#xA;--  SELECT columnforcmscode &#xA;--  FROM   mappinglist &#xA;--  WHERE  columnforcmscode NOT IN (SELECT DISTINCT column_name &#xA;--                                  FROM   information_schema.columns &#xA;--                                  WHERE &#xA;--         table_name = 'QdGeneralTemplateValidation') &#xA;--         AND datatype = 'G'; &#xA;&#xA;--OPEN cursor_product; &#xA;&#xA;--FETCH next FROM cursor_product INTO @ColumnForCMSCode; &#xA;&#xA;--WHILE @@FETCH_STATUS = 0 &#xA;--  BEGIN &#xA;--      SET @SQL_L2 = ( ' Alter Table QdGeneralTemplateValidation Add ' + @ColumnForCMSCode + ' Int NULL' ) &#xA;&#xA;--      EXECUTE(@SQL_L2); &#xA;&#xA;--      FETCH next FROM cursor_product INTO @ColumnForCMSCode; &#xA;--  END; &#xA;&#xA;--CLOSE cursor_product; &#xA;&#xA;--DEALLOCATE cursor_product; &#xA;&#xA;----------------- Update values in code columns  -----------------------&#xA;&#xA;DECLARE @ColumnForCMSCode_1 NVARCHAR(max), &#xA;        @ColumnToCheck_1    NVARCHAR(max), &#xA;        @MappingCodeID      NVARCHAR(max), &#xA;        @Description        NVARCHAR(max), &#xA;        @SQL_1              NVARCHAR(max),&#xA;&#x9;&#x9;@SourceData_1&#x9;&#x9;NVARCHAR(max),&#xA;&#x9;&#x9;@Version_1&#x9;&#x9;&#x9;NVARCHAR(MAX) &#xA;&#xA;&#x9;&#x9;&#xA;&#x9;  Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '2B',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;DECLARE cursor_product CURSOR FOR &#xA; &#xA;   SELECT distinct &#xA;   SourceData,&#xA;   columntocheck, &#xA;         columnforcmscode, &#xA;         mappingcodeid, &#xA;         [description] ,&#xA;&#x9;&#x9; VersionColId&#xA;  FROM   sourcetodictionarymapping A &#xA;         INNER JOIN mappingdictionary b &#xA;                 ON a.mapplistid = b.mappinglistid &#xA;                    AND a.mappingcodeid = b.code &#xA;         INNER JOIN mappinglist c &#xA;                 ON a.mapplistid = c.id &#xA;&#x9;&#x9;&#x9;&#x9; inner join VersionTemplate d&#xA;&#x9;&#x9;&#x9;&#x9; on d.ColumnName = c.ColumnToCheck&#xA;&#x9;&#x9;&#x9;&#x9; and d.DataType = 'G'&#xA;&#x9;&#x9;&#x9;&#x9; where C.DataType = 'G' and a.year = @year&#xA;&#xA;OPEN cursor_product; &#xA;&#xA;FETCH next FROM cursor_product INTO @SourceData_1,@ColumnToCheck_1, @ColumnForCMSCode_1, &#xA;@MappingCodeID, @Description,@Version_1; &#xA;&#xA;WHILE @@FETCH_STATUS = 0 &#xA;  BEGIN &#xA;      SET @SQL_1 = ( ' Update A set A.' + @ColumnForCMSCode_1 + ' = ''' &#xA;                     + @MappingCodeID + ''',' + 'A.' + @ColumnToCheck_1 &#xA;                     + ' = ''' + @Description + '''' + ' from QdGeneralTemplateValidation A where A.year = ' &#xA;                     + @YEAR + ' and  case when ' +@ColumnToCheck_1+' like ''%kind item%'' then STUFF(A.' + @ColumnToCheck_1 + ',3,1,''-'') else '+@ColumnToCheck_1+' end =  case when '''&#xA;                     +@SourceData_1+''' like ''%kind item%'' then STUFF('''+@SourceData_1+ ''',3,1,''-'') else '''+@SourceData_1+''' end'  ) &#xA;&#xA;      execute(@SQL_1); &#xA;&#xA;&#x9;  &#xA;&#x9;  Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '2B',&#xA;ColumnInProgress = @VersionColID&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;      FETCH next FROM cursor_product INTO @SourceData_1,@ColumnToCheck_1, @ColumnForCMSCode_1, &#xA;      @MappingCodeID, @Description,@Version_1; &#xA;  END; &#xA;&#xA;CLOSE cursor_product; &#xA;&#xA;DEALLOCATE cursor_product; &#xA;&#xA;&#xA;---------------------- Update Designation in QdGeneralTemplateValidation -----------------&#xA;&#xA;update a&#xA;set a.RECIPIENT_PROFESSIONAL_DESIGNATION = b.RECIPIENT_PROFESSIONAL_DESIGNATION,&#xA;a.Recipient_Professional_Designation_cms_description = Null,&#xA;a.Recipient_Professional_Designation_code = Null,&#xA;PrimaryTypeReportingStatus = Null,&#xA;a.RECIPIENT_PROFESSIONAL_DESIGNATION_2 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_2,&#xA;a.Recipient_Professional_Designation_2_cms_description = Null,&#xA;a.Recipient_Professional_Designation_2_code = Null,&#xA;PrimaryTypeReportingStatus2 = Null,&#xA;a.RECIPIENT_PROFESSIONAL_DESIGNATION_3 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_3,&#xA;a.Recipient_Professional_Designation_3_cms_description = Null,&#xA;a.Recipient_Professional_Designation_3_code = Null,&#xA;PrimaryTypeReportingStatus3 = Null,&#xA;a.RECIPIENT_PROFESSIONAL_DESIGNATION_4 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_4,&#xA;a.Recipient_Professional_Designation_4_cms_description = Null,&#xA;a.Recipient_Professional_Designation_4_code = Null,&#xA;PrimaryTypeReportingStatus4 = Null,&#xA;a.RECIPIENT_PROFESSIONAL_DESIGNATION_5 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_5,&#xA;a.Recipient_Professional_Designation_5_cms_description = Null,&#xA;a.Recipient_Professional_Designation_5_code = Null,&#xA;PrimaryTypeReportingStatus5 = Null&#xA;from QdGeneralTemplateValidation a join QdGeneralTemplate b on a.FileID = b.FileID and a.LZRecordID = b.LZRecordID and a.year = b.year&#xA;where a.year = @YEAR and (isPhysicianVerifiedFlag &lt;&gt; 1 or isPhysicianVerifiedFlag is null) &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\General.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{B7CA645B-DB19-40DA-8D65-9701857F34F3}"
+          DTS:From="Package\General\SourceToDictionaryMapping"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\General\Product Mapping" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\General.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{A7757ABD-B09B-48B8-A5F0-929C92311E98}"
+          DTS:From="Package\General\Product Mapping"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\General\Validation Errors" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\General.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{88958951-EBE3-4978-98AE-99F706E1593C}"
+          DTS:From="Package\General\Validation Errors"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\General\Update Counts" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Research"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{AA448029-0369-45D5-820E-6FBC8F7EAE93}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Research">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Research\Product Mapping"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{31252E68-C518-44F5-AB95-DFEE48FC6B4A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Product Mapping"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '3',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs);&#xA;&#xA;DECLARE @YEAR AS NVARCHAR(255)=(SELECT parameter_value &#xA;  FROM   parameters &#xA;  WHERE  parameter_name = 'p_CurrentYear'),&#xA;  @SQL_NOP as nvarchar(max);&#xA;&#xA;DECLARE @VersionID&#x9;&#x9;&#x9;NVARCHAR(MAX) = (Select versionid from VersionYearMapping where year = @YEAR);&#xA;DECLARE @productName NVARCHAR(max);&#xA;&#xA;DECLARE cursor_product CURSOR FOR &#xA;  select A.productName from &#xA;  (select distinct PRODUCT_DISCUSSED_1 as productName  from QdResearchTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_2 as productName  from QdResearchTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_3 as productName  from QdResearchTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_4 as productName  from QdResearchTemplate where year = @year&#xA;union&#xA;select distinct PRODUCT_DISCUSSED_5 as productName  from QdResearchTemplate where year = @year) A&#xA;left join productmapping B &#xA;on A.productName=B.[Source Product Name] and  b.year = @year where B.[Source Product Name] is null and a.productName is not null and a.productName &lt;&gt; '';&#xA;&#xA;OPEN cursor_product; &#xA;&#xA;FETCH next FROM cursor_product INTO @productName; &#xA;&#xA;WHILE @@FETCH_STATUS = 0 &#xA;  BEGIN&#xA;  --set @VersionColID=(select distinct VersionColId from VersionTemplate where datatype = 'R' and ColumnName = @Column and RIGHT(VersionID,4) = (select max(RIGHT(versionID,4)) from VersionTemplate));&#xA;&#x9;SET @SQL_NOP =&#xA;&#x9;'insert into productmapping&#xA;&#x9;(Year,[Source Product Name],[Is Reportable],[Covered/Noncovered],[Product Type],[Therapeutic Area],[Mapped Product Name],[Mapped NDC],[Primary Device Identifier])'&#xA;&#x9;+'select '+ @YEAR+','''+@productName+''' as [Source Product Name],Null as [Is Reportable], Null as [Covered/Noncovered],&#xA;&#x9;Null as [Product Type], Null as [Therapeutic Area], Null as [Mapped Product Name], Null as [Mapped NDC], Null as [Primary Device Identifier]  ';&#xA;&#xA;&#x9;execute(@SQL_NOP);&#xA;&#xA;&#x9;--Update ValidationAuditLogs&#xA;&#x9;--Set EndTime = getdate(),&#xA;&#x9;--ProcessStatus = '3',&#xA;&#x9;--ColumnInProgress = @VersionColID&#xA;&#x9;--where ID = (Select max(ID) from ValidationAuditLogs);&#xA;&#xA;&#x9;FETCH next FROM cursor_product INTO @productName; &#xA;  END;&#xA;CLOSE cursor_product; &#xA;&#xA;DEALLOCATE cursor_product; &#xA;&#xA;--------------------UPDATE VALUES-----------------------------&#xA;&#xA;update a&#xA;set &#xA;--A.RELATED_PRODUCT_INDICATOR = B.[Is Reportable],&#xA;A.COVERED_OR_NONCOVERED_INDICATOR_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_1) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_1 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdResearchTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_1 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_2) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_2 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdResearchTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_2 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_3) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_3 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdResearchTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_3 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_4) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_4 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdResearchTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_4 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;update a&#xA;set &#xA;A.COVERED_OR_NONCOVERED_INDICATOR_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then  B.[Covered/Noncovered] else null end,&#xA;A.INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Product Type]  else null end, &#xA;A.PRODUCT_CATEGORY_OR_THERAPEUTIC_AREA_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Therapeutic Area] else null end, &#xA;A.PRODUCT_DISCUSSED_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then isnull(B.[Mapped Product Name],A.PRODUCT_DISCUSSED_5) else null end,&#xA;A.ASSOCIATED_DRUG_OR_BIOLOGICAL_NDC_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Mapped NDC] else null end ,&#xA;A.PRIMARY_DEVICE_IDENTIFIER_5 = case when (B.[Is Reportable] = 'Yes' or B.[Is Reportable] is null) then B.[Primary Device Identifier] else null end &#xA;from QdResearchTemplateValidation a join productmapping b &#xA;on a.PRODUCT_DISCUSSED_5 = b.[Source Product Name] and a.year = b.year&#xA;where a.year = @year;&#xA;&#xA;--------------------------------------UPDATING VALIDATION ERROR---------------------------------&#xA;DECLARE &#xA;@Product&#x9;&#x9;&#x9;NVARCHAR(MAX), &#xA;@ColumnName&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX),&#xA;@VersionColumnID&#x9;&#x9;NVARCHAR(MAX),&#xA;@SQL&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX),&#xA;@ID&#x9;&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX) = (Select ID from mappinglist where datatype='R' and MappingDescription = 'Product' and versionid = @VersionID);&#xA;&#xA;&#xA;&#xA;&#xA;DECLARE cursor_product2 CURSOR FOR &#xA;SELECT A.PRODUCT_DISCUSSED ,A.ColumnName&#x9;&#xA;FROM (&#xA;SELECT PRODUCT_DISCUSSED_1 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_1' as ColumnName&#x9; FROM QdResearchTemplateVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_2 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_2' as ColumnName&#x9; FROM QdResearchTemplateVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_3 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_3' as ColumnName&#x9; FROM QdResearchTemplateVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_4 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_4' as ColumnName&#x9; FROM QdResearchTemplateVALIDATION&#xA;UNION &#xA;SELECT PRODUCT_DISCUSSED_5 AS PRODUCT_DISCUSSED, 'PRODUCT_DISCUSSED_5' as ColumnName&#x9; FROM QdResearchTemplateVALIDATION&#xA;)A&#xA;WHERE A.PRODUCT_DISCUSSED NOT IN &#xA;(SELECT DISTINCT [Mapped Product Name] FROM productmapping where year = @year and [Mapped Product Name] is not null)&#xA;AND A.PRODUCT_DISCUSSED &lt;&gt; '' AND A.PRODUCT_DISCUSSED IS NOT NULL;&#xA;&#xA;OPEN cursor_product2;&#xA; &#xA;FETCH NEXT FROM cursor_product2 INTO &#xA;    @Product, &#xA;    @ColumnName;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#xA;&#xA;&#x9;set @VersionColumnID=(select distinct VersionColId from VersionTemplate where datatype = 'R' and ColumnName = @ColumnName and versionid = @versionID);&#xA;&#xA;&#x9;Set @SQL = ('Insert into [ResearchValidationErrors](Year, RuleID,VersionColId, TransactionID,LZRecordID, InsertedDate, InsertedBy, UpdatedDate, UpdatedBy, [Level]) &#xA;&#x9;select Year,'+@ID+' as RuleID,'''+@VersionColumnId+''' as VersionColId, ID as TransactionID, LZRecordID,getdate() as InsertedDate, SYSTEM_USER as InsertedBy,getdate() as UpdatedDate, SYSTEM_USER as UpdatedBy ,''L2'' as [Level]&#xA;&#x9;from QdResearchTemplateValidation &#xA;&#x9;where year = '+@YEAR+' and '+@ColumnName+' = '''+@Product+'''');&#xA;&#xA;&#x9;execute(@SQL);&#xA;&#xA;&#x9;Update ValidationAuditLogs&#xA;&#x9;Set EndTime = getdate(),&#xA;&#x9;ProcessStatus = '3',&#xA;&#x9;ColumnInProgress = @VersionColumnID&#xA;&#x9;where ID = (Select max(ID) from ValidationAuditLogs);&#xA;&#xA;&#xA;&#x9;FETCH NEXT FROM cursor_product2 INTO @Product, &#xA;&#x9;&#x9;@ColumnName;&#xA;&#x9;END;&#xA; &#xA;CLOSE cursor_product2;&#xA; &#xA;DEALLOCATE cursor_product2;&#xA;&#xA;update QdResearchTemplateValidation&#xA;set RELATED_PRODUCT_INDICATOR = case when isnull(PRODUCT_DISCUSSED_1,'') &lt;&gt; '' or  isnull(PRODUCT_DISCUSSED_2,'') &lt;&gt; '' or isnull(PRODUCT_DISCUSSED_3,'') &lt;&gt; ''&#xA;or isnull(PRODUCT_DISCUSSED_4,'') &lt;&gt; '' or isnull(PRODUCT_DISCUSSED_5,'') &lt;&gt; '' then 'Y' else 'N' end&#xA;where year = @year&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Research\SourceToDictionaryMapping"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D70D6E79-035E-4519-BD26-6CBFB54C72F8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SourceToDictionaryMapping"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="&#xA;Declare @YEAR as nvarchar(255)=(select parameter_value from Parameters where Parameter_Name = 'p_CurrentYear')&#xA;DECLARE @VERSIONID AS NVARCHAR(50) = (select VersionID From VersionYearMapping where year = @YEAR)&#xA;Declare @SQL_NOP as nvarchar(max)&#xA;DECLARE @Version AS NVARCHAR(max) &#xA;DECLARE @designationMappingListID as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID2 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 2' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID3 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 3' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID4 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 4' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @designationMappingListID5 as INT = (select ID From mappinglist where mappingdescription = 'Recipient Professional Designation 5' and datatype = 'R' and versionid = @VERSIONID)&#xA;&#xA;------------------- SMD -------------------------&#xA;DECLARE &#xA;@ColumnToCheck_SMD&#x9;&#x9;NVARCHAR(MAX),&#xA;@ID&#x9;&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX)&#xA; &#xA;DECLARE cursor_product CURSOR&#xA;FOR &#xA;select A.ID, ColumnToCheck,B.VersionColId  from [MappingList] A&#xA; Left join VersionTemplate B&#xA;  on A.ColumnToCheck = B.ColumnName and A.VersionID = B.VersionID&#xA;  WHERE  A.DataType = 'R' and A.versionID = @VERSIONID&#xA;  and b.DataType = 'R' &#xA;&#xA;&#xA; &#xA;OPEN cursor_product;&#xA; &#xA;FETCH NEXT FROM cursor_product INTO @ID,@ColumnToCheck_SMD, @Version;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#xA;&#xA;set @SQL_NOP = 'insert into [SourceToDictionaryMapping](Year,MappListID, SourceData) '+&#xA;'select distinct '+@YEAR+','+@ID+','+@ColumnToCheck_SMD+' from QdResearchTemplateValidation '+&#xA;'where year='+@YEAR+&#xA;' and '+@ColumnToCheck_SMD+' is not null and '+@ColumnToCheck_SMD+' &lt;&gt; ''''' + ' and '+@ColumnToCheck_SMD+'_code is null'&#xA;+ ' and (case when '+@ColumnToCheck_SMD+' like ''%kind item%'' then STUFF('+@ColumnToCheck_SMD+&#xA;',3,1,''-'')  else '+@ColumnToCheck_SMD+' end) not in (Select distinct case when SourceData like ''%kind item%'' then STUFF(SourceData,3,1,''-'') else SourceData end from SourceToDictionaryMapping &#xA;where mapplistid = '+@ID+' and year = '+@year+')' &#xA;&#xA;execute(@SQL_NOP)&#xA;&#xA;------------------Update Logs -------------------&#xA;&#xA;Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '1A',&#xA;ColumnInProgress = @Version&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;        FETCH NEXT FROM cursor_product INTO @ID,@ColumnToCheck_SMD, @Version;&#xA;    END;&#xA; &#xA;CLOSE cursor_product;&#xA; &#xA;DEALLOCATE cursor_product;&#xA;&#xA;&#xA;------------------- Remove source designations from mapping to only keep NPPES verified designations in mapping------------&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_2&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID2 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID2&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_3&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID3 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID3&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_4&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID4 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID4&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.RECIPIENT_PROFESSIONAL_DESIGNATION_5&#xA;and a.year = b.year where b.year = @year and a.MappListID = @designationMappingListID5 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPhysicianVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @designationMappingListID5&#xA;&#xA;&#xA;-- PI DESIGNATION DELETES&#xA;&#xA;&#xA;&#xA;DECLARE @PI_designationMappingListID as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @PI_designationMappingListID2 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 2' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @PI_designationMappingListID3 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 3' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @PI_designationMappingListID4 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 4' and datatype = 'R' and versionid = @VERSIONID)&#xA;DECLARE @PI_designationMappingListID5 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 5' and datatype = 'R' and versionid = @VERSIONID)&#xA;&#xA;&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION&#xA;and a.year = b.year where b.year = 2022 and a.MappListID = @PI_designationMappingListID and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPrincipleInvestigatorVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @PI_designationMappingListID&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_2&#xA;and a.year = b.year where b.year = @year and a.MappListID = @PI_designationMappingListID2 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPrincipleInvestigatorVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @PI_designationMappingListID2&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_3&#xA;and a.year = b.year where b.year = @YEAR and a.MappListID = @PI_designationMappingListID3 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPrincipleInvestigatorVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @PI_designationMappingListID3&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_4&#xA;and a.year = b.year where b.year = @year and a.MappListID = @PI_designationMappingListID4 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPrincipleInvestigatorVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @PI_designationMappingListID4&#xA;&#xA;;with cte as (&#xA;select a.SourceData From SourceToDictionaryMapping a join QdResearchTemplateValidation b on a.SourceData = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_5&#xA;and a.year = b.year where b.year = @year and a.MappListID = @PI_designationMappingListID5 and (a.MappingCodeID is null and a.IsReportable is null)&#xA;group by SourceData&#xA;Having sum(case when isPrincipleInvestigatorVerifiedFlag = 1 then 1 else 0 end) = 0&#xA;)&#xA;delete a From SourceToDictionaryMapping a join cte b on a.SourceData = b.SourceData &#xA;where a.year = @year and a.MappListID = @PI_designationMappingListID5&#xA;&#xA;&#xA;&#xA;&#xA;------------------- Updating SourceToDictionaryMapping -------------------------&#xA;&#xA;&#xA;update a&#xA;set a.MappingCodeID = b.Code&#xA;from SourceToDictionaryMapping a&#xA;inner join MappingDictionary b&#xA;on a.MappListID = b.MappingListID&#xA;and a.SourceData = b.[Description]&#xA;inner join MappingList c&#xA;on a.MappListID = c.ID&#xA;and c.DataType = 'R'&#xA;where a.mappingCodeID is null and a.Year = @YEAR&#xA;&#xA;&#xA;UPDATE a   &#xA;SET    a.mappingcodeid = b.code &#xA;FROM   sourcetodictionarymapping a &#xA;       INNER JOIN mappingdictionary_extended b   &#xA;               ON a.mapplistid = b.mappinglistid   &#xA;                  AND a.sourcedata = b.[description]   &#xA;       INNER JOIN mappinglist d   &#xA;               ON a.mapplistid = d.id   &#xA;                  AND d.datatype = 'R'   &#xA;WHERE  a.mappingcodeid IS NULL  &#xA;&#xA;&#xA;and isnull(a.IsReportable,'') &lt;&gt; '1'&#xA;&#xA;and a.Year = @YEAR&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;------------------Update Logs -------------------&#xA;&#xA;Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '1A',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;&#xA;------------------- Deleting duplicates from SMD ------------------&#xA;&#xA;&#xA;select distinct  year, mapplistid, sourcedata,mappingcodeid, suggestedid, isreportable &#xA;into #SourceToDictionaryMapping&#xA;from SourceToDictionaryMapping&#xA;&#xA;Truncate table SourceToDictionaryMapping&#xA;&#xA;insert into SourceToDictionaryMapping&#xA;select * from #SourceToDictionaryMapping&#xA;--------------------Designation Mapping Update from MDM-----------------&#xA;&#xA;&#xA;update a&#xA;set a.MappingCodeID = b.CMSMappingCode,&#xA;a.IsReportable = case when b.ReportingStatus = 0 then 1 else null end&#xA;From SourceToDictionaryMapping a join FederalReportingMDM..PrimaryTypeMDM_v2021 b &#xA;on a.SourceData = b.PrimaryType &#xA;where MappListID in (@designationMappingListID,@designationMappingListID2,@designationMappingListID3,@designationMappingListID4,@designationMappingListID5) &#xA;and a.year = @year&#xA;and  b.ReportingStatus &lt;&gt;2 and a.MappingCodeID is null  and a.IsReportable is null&#xA;&#xA;&#xA;---------------- PI DESIGNATION ----------------------------&#xA;&#xA;&#xA;--DECLARE @PI_designationMappingListID as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION' and datatype = 'R' and versionid = @VERSIONID)&#xA;--DECLARE @PI_designationMappingListID2 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 2' and datatype = 'R' and versionid = @VERSIONID)&#xA;--DECLARE @PI_designationMappingListID3 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 3' and datatype = 'R' and versionid = @VERSIONID)&#xA;--DECLARE @PI_designationMappingListID4 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 4' and datatype = 'R' and versionid = @VERSIONID)&#xA;--DECLARE @PI_designationMappingListID5 as INT = (select ID From mappinglist where mappingdescription = 'PRINCIPAL1 INVESTIGATOR PROFESSIONAL DESIGNATION 5' and datatype = 'R' and versionid = @VERSIONID)&#xA;&#xA;&#xA;&#xA;&#xA;update a&#xA;set a.MappingCodeID = b.CMSMappingCode,&#xA;a.IsReportable = case when b.ReportingStatus = 0 then 1 else null end&#xA;From &#xA;&#x9;SourceToDictionaryMapping a &#xA;&#x9;join &#xA;&#x9;FederalReportingMDM..PrimaryTypeMDM_V2021 b &#xA;on a.SourceData = b.PrimaryType &#xA;where MappListID in &#xA;(&#xA;&#x9; @PI_designationMappingListID&#xA;&#x9;,@PI_designationMappingListID &#xA;&#x9;,@PI_designationMappingListID2&#xA;&#x9;,@PI_designationMappingListID3&#xA;&#x9;,@PI_designationMappingListID4&#xA;&#x9;,@PI_designationMappingListID5&#xA;&#xA;) &#xA;and a.year = @year&#xA;and  b.ReportingStatus &lt;&gt;2 and a.MappingCodeID is null  and a.IsReportable is null&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Research\Update Counts"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5897E561-AE02-464B-BEDC-34B8DF5583CC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Counts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="&#xA;Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '4',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;------------------------------- Update Error Count -----------------------&#xA;&#xA;DECLARE @YEAR   NVARCHAR(255)=(SELECT PARAMETER_VALUE FROM PARAMETERS WHERE PARAMETER_NAME = 'P_CURRENTYEAR')&#xA;&#xA;&#xA;update QdResearchTemplateValidation&#xA;set NoOfFailedRulesL2 = NULL&#xA;where year = @Year&#xA;&#xA;Update A&#xA;set A.NoOfFailedRulesL2 = B.[count]&#xA;from QdResearchTemplateValidation A&#xA;inner join &#xA;(select TransactionID, count(*) as [count]&#xA;from ResearchValidationErrors&#xA;where [Level] = 'L2'&#xA;and year = @YEAR&#xA;group by TransactionID&#xA;)B&#xA;on a.ID = b.transactionID&#xA;-----------------------------------&#xA;&#xA;&#xA;Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '4',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Research\Validation Errors"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5BABE1CB-E65B-47AE-8641-44F00B663BC8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Validation Errors"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+              SQLTask:SqlStatementSource="DECLARE @YEAR AS NVARCHAR(255)=(SELECT parameter_value &#xA;  FROM   parameters &#xA;  WHERE  parameter_name = 'p_CurrentYear') &#xA;DECLARE &#xA;    @SourceData&#x9;&#x9;NVARCHAR(MAX), &#xA;    @ColumnToCheck  NVARCHAR(MAX),&#xA;&#x9;@VersionColID&#x9;NVARCHAR(MAX),&#xA;&#x9;@ID&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX),&#xA;&#x9;@SQL&#x9;&#x9;&#x9;NVARCHAR(MAX)&#xA; &#xA;DECLARE @VERSIONID AS NVARCHAR(MAX) = (SELECT VERSIONID FROM VersionYearMapping WHERE YEAR = @YEAR)&#xA;------------------------------- Validation Errors ----------------------- &#xA;DELETE FROM researchvalidationerrors &#xA;WHERE  [level] = 'L2' and year = @YEAR&#xA;&#xA;&#xA;Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '2A',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;&#xA;DECLARE cursor_product CURSOR&#xA;FOR select &#xA;SourceData, ColumnToCheck ,b.ID&#xA;from SourceToDictionaryMapping a &#xA;inner join MappingList b &#xA;on a.MappListID = b.ID &#xA;where  &#xA;MappingCodeID is NULL &#xA;and DataType = 'R' and a.Year = @YEAR;&#xA; &#xA;OPEN cursor_product;&#xA; &#xA;FETCH NEXT FROM cursor_product INTO &#xA;    @SourceData, &#xA;    @ColumnToCheck,&#xA;&#x9;@ID;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#xA;&#xA;set @VersionColID=(select distinct VersionColId from VersionTemplate where datatype = 'R' and ColumnName = @ColumnToCheck and versionid = @versionId);&#xA;&#xA;Set @SQL = ('Insert into [ResearchValidationErrors](Year, RuleID,VersionColId, TransactionID,LZRecordID, InsertedDate, InsertedBy, UpdatedDate, UpdatedBy, [Level]) &#xA;select Year,'+@ID+' as RuleID,'''+@VersionColId+''' as VersionColId, ID as TransactionID, LZRecordID,getdate() as InsertedDate, SYSTEM_USER as InsertedBy,getdate() as UpdatedDate, SYSTEM_USER as UpdatedBy ,''L2'' as [Level]&#xA;from QdResearchTemplateValidation &#xA;where year = '+@YEAR+' and '+@ColumnToCheck+' = '''+@SourceData+'''');&#xA;&#xA;execute(@SQL);&#xA;&#xA;&#x9;  Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '2A',&#xA;ColumnInProgress = @VersionColID&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;        FETCH NEXT FROM cursor_product INTO &#xA;            @SourceData, &#xA;            @ColumnToCheck,&#xA;&#x9;&#x9;&#x9;@ID;&#xA;    END;&#xA; &#xA;CLOSE cursor_product;&#xA; &#xA;DEALLOCATE cursor_product;&#xA;&#xA;&#xA;------------------------------- Update Validations_L2 -----------------------&#xA;&#xA;---- Addition of CodeForCMSColumns --&#xA;--DECLARE &#xA;--    @ColumnForCMSCode&#x9;NVARCHAR(MAX),&#xA;--&#x9;@SQL_L2&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX)&#xA; &#xA;--DECLARE cursor_product CURSOR&#xA;--FOR select ColumnForCMSCode from Mappinglist &#xA;--where ColumnForCMSCode not in &#xA;--(select distinct COLUMN_NAME &#xA;--from INFORMATION_SCHEMA.COLUMNS&#xA;-- where table_name  = 'QdResearchTemplateValidation')&#xA;--and datatype = 'R';&#xA; &#xA;--OPEN cursor_product;&#xA; &#xA;--FETCH NEXT FROM cursor_product INTO @ColumnForCMSCode;&#xA;&#xA;--WHILE @@FETCH_STATUS = 0&#xA;--    BEGIN&#xA;&#xA;--Set @SQL_L2 = ('&#xA;--Alter Table QdResearchTemplateValidation&#xA;--Add '+@ColumnForCMSCode+' Int NULL')&#xA;&#xA;--execute(@SQL_L2);&#xA;&#xA;--        FETCH NEXT FROM cursor_product INTO @ColumnForCMSCode;&#xA;--    END;&#xA; &#xA;--CLOSE cursor_product;&#xA; &#xA;--DEALLOCATE cursor_product;&#xA;&#xA;&#xA;-- Update values in code columns &#xA;&#xA;DECLARE &#xA;    @ColumnForCMSCode_1&#x9;NVARCHAR(MAX),&#xA;&#x9;@ColumnToCheck_1&#x9;&#x9;NVARCHAR(MAX),&#xA;&#x9;@MappingCodeID&#x9;&#x9;NVARCHAR(MAX),&#xA;&#x9;@Description&#x9;&#x9;NVARCHAR(MAX),&#xA;&#x9;@SQL_1&#x9;&#x9;&#x9;&#x9;NVARCHAR(MAX),&#xA;&#x9;@SourceData_1&#x9;&#x9;NVARCHAR(MAX)&#xA; &#xA; &#xA;&#x9;  Update ValidationAuditLogs&#xA;Set StartTime = getdate(),&#xA;ProcessStatus = '2B',&#xA;ColumnInProgress = NULL&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;DECLARE cursor_product CURSOR&#xA;FOR &#xA;select distinct  &#xA;sourcedata,&#xA;ColumnToCheck,ColumnForCMSCode, MappingCodeID, [Description]&#xA;from SourceToDictionaryMapping A&#xA;inner join MappingDictionary b&#xA;on a.MappListID = b.MappingListID&#xA;and a.mappingcodeid = b.Code&#xA;inner join mappinglist c&#xA;on a.MappListID = c.ID&#xA;where datatype = 'R' and a.Year = @YEAR&#xA;&#xA;&#xA; &#xA;OPEN cursor_product;&#xA; &#xA;FETCH NEXT FROM cursor_product INTO @SourceData_1,@ColumnToCheck_1,@ColumnForCMSCode_1,@MappingCodeID,@Description;&#xA;&#xA;WHILE @@FETCH_STATUS = 0&#xA;    BEGIN&#xA;&#xA;Set @SQL_1 = ('&#xA;Update A&#xA;set A.'+@ColumnForCMSCode_1+' = '''+@MappingCodeID +''','+&#xA;'A.'+@ColumnToCheck_1+' = '''+@Description+''''+&#xA;' from QdResearchTemplateValidation A&#xA;where A.year = '+@YEAR+' and  A.' + @ColumnToCheck_1 + ' = ' &#xA;                     + ' '''+@SourceData_1+ ''''  ) &#xA; &#xA;&#xA;&#xA;execute(@SQL_1);&#xA;&#xA;&#x9;  Update ValidationAuditLogs&#xA;Set EndTime = getdate(),&#xA;ProcessStatus = '2B',&#xA;ColumnInProgress = @VersionColID&#xA;where ID = (Select max(ID) from ValidationAuditLogs)&#xA;&#xA;        FETCH NEXT FROM cursor_product INTO @SourceData_1,@ColumnToCheck_1,@ColumnForCMSCode_1,@MappingCodeID,@Description;&#xA;    END;&#xA; &#xA;CLOSE cursor_product;&#xA; &#xA;DEALLOCATE cursor_product;&#xA;&#xA;&#xA;&#xA;---------------------- Update Designation in QdGeneralTemplateValidation -----------------&#xA;&#xA;update a&#xA;set a.RECIPIENT_PROFESSIONAL_DESIGNATION = b.RECIPIENT_PROFESSIONAL_DESIGNATION,&#xA;a.Recipient_Professional_Designation_cms_description = Null,&#xA;a.Recipient_Professional_Designation_code = Null,&#xA;RecipientPrimaryTypeReportingStatus = Null&#xA;from QdResearchTemplateValidation a join QdResearchTemplate b on a.FileID = b.FileID and a.LZRecordID = b.LZRecordID and a.year = b.year&#xA;where a.year = @YEAR and (isPhysicianVerifiedFlag &lt;&gt; 1 or isPhysicianVerifiedFlag is null) &#xA;&#xA;update a&#xA;set a.RECIPIENT_PROFESSIONAL_DESIGNATION_2 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_2,&#xA;a.Recipient_Professional_Designation_2_cms_description = Null,&#xA;a.Recipient_Professional_Designation_2_code = Null,&#xA;RecipientPrimaryTypeReportingStatus2 = Null&#xA;from QdResearchTemplateValidation a join QdResearchTemplate b on a.FileID = b.FileID and a.LZRecordID = b.LZRecordID and a.year = b.year&#xA;where a.year = @YEAR and (isPhysicianVerifiedFlag &lt;&gt; 1 or isPhysicianVerifiedFlag is null) &#xA;&#xA;update a&#xA;set a.RECIPIENT_PROFESSIONAL_DESIGNATION_3 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_3,&#xA;a.Recipient_Professional_Designation_3_cms_description = Null,&#xA;a.Recipient_Professional_Designation_3_code = Null,&#xA;RecipientPrimaryTypeReportingStatus3 = Null&#xA;from QdResearchTemplateValidation a join QdResearchTemplate b on a.FileID = b.FileID and a.LZRecordID = b.LZRecordID and a.year = b.year&#xA;where a.year = @YEAR and (isPhysicianVerifiedFlag &lt;&gt; 1 or isPhysicianVerifiedFlag is null) &#xA;&#xA;update a&#xA;set a.RECIPIENT_PROFESSIONAL_DESIGNATION_4 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_4,&#xA;a.Recipient_Professional_Designation_4_cms_description = Null,&#xA;a.Recipient_Professional_Designation_4_code = Null,&#xA;RecipientPrimaryTypeReportingStatus4 = Null&#xA;from QdResearchTemplateValidation a join QdResearchTemplate b on a.FileID = b.FileID and a.LZRecordID = b.LZRecordID and a.year = b.year&#xA;where a.year = @YEAR and (isPhysicianVerifiedFlag &lt;&gt; 1 or isPhysicianVerifiedFlag is null) &#xA;&#xA;update a&#xA;set a.RECIPIENT_PROFESSIONAL_DESIGNATION_5 = b.RECIPIENT_PROFESSIONAL_DESIGNATION_5,&#xA;a.Recipient_Professional_Designation_5_cms_description = Null,&#xA;a.Recipient_Professional_Designation_5_code = Null,&#xA;RecipientPrimaryTypeReportingStatus5 = Null&#xA;from QdResearchTemplateValidation a join QdResearchTemplate b on a.FileID = b.FileID and a.LZRecordID = b.LZRecordID and a.year = b.year&#xA;where a.year = @YEAR and (isPhysicianVerifiedFlag &lt;&gt; 1 or isPhysicianVerifiedFlag is null) &#xA;&#xA;&#xA;/************* UPDATE PI DESIGNATIONS ************************/&#xA;&#xA; &#xA;update a&#xA;set &#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_cms_description = Null,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_Code = Null,&#xA;PRINCIPAL1_INVESTIGATORPrimaryTypeReportingStatus = Null&#xA;from QdResearchTemplateValidation a &#xA;&#x9;join QdResearchTemplate b &#xA;&#x9;on a.FileID = b.FileID &#xA;&#x9;and a.LZRecordID = b.LZRecordID &#xA;&#x9;and a.year = b.year&#xA;where a.year = @YEAR and (isPrincipleInvestigatorVerifiedFlag &lt;&gt; 1 or isPrincipleInvestigatorVerifiedFlag is null) &#xA;&#xA;&#xA;update a&#xA;set &#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_2 = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_2,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_2_Code = Null,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_2_cms_description = Null,&#xA;PRINCIPAL1_INVESTIGATORPrimaryTypeReportingStatus2 = Null&#xA;&#xA;from QdResearchTemplateValidation a &#xA;join QdResearchTemplate b &#xA;&#x9;on a.FileID = b.FileID &#xA;&#x9;and a.LZRecordID = b.LZRecordID &#xA;&#x9;and a.year = b.year&#xA;where a.year = @YEAR and (isPrincipleInvestigatorVerifiedFlag &lt;&gt; 1 or isPrincipleInvestigatorVerifiedFlag is null) &#xA;&#xA;update a&#xA;set a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_3 = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_3,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_3_Code = Null,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_3_cms_description = Null,&#xA;PRINCIPAL1_INVESTIGATORPrimaryTypeReportingStatus3 = Null&#xA;from QdResearchTemplateValidation a &#xA;&#x9;join QdResearchTemplate b &#xA;&#x9;on a.FileID = b.FileID &#xA;&#x9;and a.LZRecordID = b.LZRecordID &#xA;&#x9;and a.year = b.year&#xA;where a.year = @YEAR and (isPrincipleInvestigatorVerifiedFlag &lt;&gt; 1 or isPrincipleInvestigatorVerifiedFlag is null) &#xA;&#xA;update a&#xA;set a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_4 = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_4,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_4_Code = Null,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_4_cms_description = Null,&#xA;PRINCIPAL1_INVESTIGATORPrimaryTypeReportingStatus4 = Null&#xA;from &#xA;&#x9;QdResearchTemplateValidation a &#xA;&#x9;join QdResearchTemplate b &#xA;&#x9;on a.FileID = b.FileID &#xA;&#x9;and a.LZRecordID = b.LZRecordID &#xA;&#x9;and a.year = b.year&#xA;where a.year = @YEAR and (isPrincipleInvestigatorVerifiedFlag &lt;&gt; 1 or isPrincipleInvestigatorVerifiedFlag is null) &#xA;&#xA;update a&#xA;set a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_5 = b.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_5,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_5_Code = Null,&#xA;a.PRINCIPAL1_INVESTIGATOR_PROFESSIONAL_DESIGNATION_5_cms_description = Null,&#xA;PRINCIPAL1_INVESTIGATORPrimaryTypeReportingStatus5 = Null&#xA;from QdResearchTemplateValidation a &#xA;&#x9;join QdResearchTemplate b&#xA;&#x9; on a.FileID = b.FileID &#xA;&#x9; and a.LZRecordID = b.LZRecordID &#xA;&#x9; and a.year = b.year&#xA;where a.year = @YEAR and (isPrincipleInvestigatorVerifiedFlag &lt;&gt; 1 or isPrincipleInvestigatorVerifiedFlag is null) &#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Research.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3751B9AC-1617-48EE-B940-42D7CD1BBF91}"
+          DTS:From="Package\Research\SourceToDictionaryMapping"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Research\Product Mapping" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Research.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{104B8E97-EBD1-4E4D-84D2-26A49077B3CD}"
+          DTS:From="Package\Research\Product Mapping"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Research\Validation Errors" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Research.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{CE4CA015-E868-4847-B6B3-5911E5FC5851}"
+          DTS:From="Package\Research\Validation Errors"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Research\Update Counts" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7CF5B590-0066-4324-A518-64ED5FC27308}"
+      DTS:From="Package\Audit_General"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\General" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9C675A95-1222-49C3-8A14-405F29607576}"
+      DTS:From="Package\Audt_Research"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Research" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Audit_General"
+          TopLeft="943,217" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Audt_Research"
+          TopLeft="477,259" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\General\Product Mapping"
+          TopLeft="31.5,111.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\General\SourceToDictionaryMapping"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\General\Update Counts"
+          TopLeft="36.5,311.5" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\General\Validation Errors"
+          TopLeft="27.5,207.5" />
+        <EdgeLayout
+          Id="Package\General.PrecedenceConstraints[Constraint]"
+          TopLeft="110.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\General.PrecedenceConstraints[Constraint 1]"
+          TopLeft="108,153.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\General.PrecedenceConstraints[Constraint 2]"
+          TopLeft="108,249.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="221,409"
+          Size="221,452"
+          Id="Package\General"
+          TopLeft="665,54" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Research\Product Mapping"
+          TopLeft="36.5,102.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Research\SourceToDictionaryMapping"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Research\Update Counts"
+          TopLeft="36.5,311.5" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Research\Validation Errors"
+          TopLeft="32.5,199.5" />
+        <EdgeLayout
+          Id="Package\Research.PrecedenceConstraints[Constraint]"
+          TopLeft="112.8,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.4"
+              Start="0,0"
+              End="0,47.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Research.PrecedenceConstraints[Constraint 1]"
+          TopLeft="112.9,144.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.4"
+              Start="0,0"
+              End="0,47.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Research.PrecedenceConstraints[Constraint 2]"
+          TopLeft="110.5,241.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="221,409"
+          Size="221,452"
+          Id="Package\Research"
+          TopLeft="202,57" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="943,238">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-57,42"
+              Start="0,0"
+              End="-49.5,42">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-24.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-24.5,0"
+                    Point2="-28.5,0"
+                    Point3="-28.5,4" />
+                  <mssgle:LineSegment
+                    End="-28.5,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.5,38"
+                    Point2="-28.5,42"
+                    Point3="-32.5,42" />
+                  <mssgle:LineSegment
+                    End="-49.5,42" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="477,281.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-54,0"
+              Start="0,0"
+              End="-46.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-46.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

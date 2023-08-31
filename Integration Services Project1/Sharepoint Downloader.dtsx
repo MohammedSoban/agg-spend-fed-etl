@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/20/2019 4:54:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="US-BCKND"
+  DTS:CreatorName="QORDATA\syed.najib"
+  DTS:DTSID="{B840460F-9CDB-40CF-B93C-78535FB24F4B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Sharepoint Downloader"
+  DTS:PackageType="5"
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{6D50FB5D-3361-4A35-92CE-E913B42CA831}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6F0BD249-35E3-45CC-B12C-A7C5C383D794}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Executable">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sharepoint downloader"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:DelayValidation="True"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{3D35CDB6-83EA-47CA-B2B8-23935A2C05FE}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sharepoint downloader"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Executable">@[User::Executable]</DTS:PropertyExpression>
+      <DTS:ObjectData />
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Variables setting"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6cbaf7d9-a5e2-4391-a1a6-9d9c60765da3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Variables setting"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{567F690F-1DCF-4B79-8574-18F7C55EBE58}"
+          SQLTask:SqlStatementSource="Select Concat(p_DownloadFiles,'\SharePoint_',p_CompMnemonic,'\download.bat') as Parameter_Value&#xA;from&#xA;(&#xA;select Parameter_Name,Parameter_Value &#xA;from Parameters&#xA;)A&#xA;PIVOT(&#xA;    MAX(Parameter_Value) &#xA;    FOR Parameter_Name IN (&#xA;        p_DownloadFiles,&#xA;&#x9;&#x9;p_CompMnemonic)&#xA;) AS pivot_table;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Executable" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{1FD609B9-EE9E-4F9E-A425-405FC78521EA}"
+      DTS:From="Package\Variables setting"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Sharepoint downloader" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Sharepoint downloader"
+          TopLeft="319,211" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Variables setting"
+          TopLeft="160,82" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="238.5,124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="174.5,87"
+              Start="0,0"
+              End="174.5,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.5"
+                    Point2="0,43.5"
+                    Point3="4,43.5" />
+                  <mssgle:LineSegment
+                    End="170.5,43.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="170.5,43.5"
+                    Point2="174.5,43.5"
+                    Point3="174.5,47.5" />
+                  <mssgle:LineSegment
+                    End="174.5,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
