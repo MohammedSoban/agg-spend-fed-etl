@@ -16,7 +16,7 @@
       DTS:ConnectionString="Data Source=.;User ID=fedusr;Initial Catalog=Fed_Rep_Sol;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASnqcJFjPpUW9UfdgmX3mGgAAAAACAAAAAAADZgAAwAAAABAAAADyRVanS4NwOh66Uia5oAPDAAAAAASAAACgAAAAEAAAADOOst8nZZCkih1RkcPtdvF4AAAA+D0ignbJ4kY6VLG3dqn1/PfrbYGMIMaMCRJj7L1l9wxylWOEwgW4YxxzFzfc0sQmTq8jFpthcoL85kM9jpWPQzOaQiXzlcEvYts+PfapAo2745NJQbZTMREPr63mTVhIWWdg8bJaGoI8TION2da0jdgrLvAUUAbEFAAAADFphRxvvOFcgOGDSmroOM5ZenMd</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASnqcJFjPpUW9UfdgmX3mGgAAAAACAAAAAAADZgAAwAAAABAAAABHfzTzvZcOS6+SsR5S2r4kAAAAAASAAACgAAAAEAAAAH5flXHd/kaBC3BmyAnC0jd4AAAAiqEn7cAJ6xVMLmNnoGrWGlDHxO46GwbcVIrsey2fWUbsUEaTRwSNhje00oPmY6wNLIsDpuranW2CWXBWlBDGKNsTOEeVmW+Ibh2we68+0dvj4LNCST3XS/BIEiPp16dE9EhCBnSGvQLOWJ5YeHvYUY/hkKnxpDYmFAAAACSFnjNScK5u0qn8PkLa8hsZiWm8</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
